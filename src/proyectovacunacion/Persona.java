@@ -15,11 +15,13 @@ public class Persona {
     private String barrio;
     private String grupoPrioritario;
     private int edad;
+    private boolean movilidad;
     
-    public Persona(String ced, String depto, String bo){
+    public Persona(String ced, String depto, String bo, boolean mov){
         cedula = ced;
         departamento = depto;
         barrio = bo;
+        movilidad = mov;
     }
     
     public void setGrupoPrioritario(String gp){
@@ -44,5 +46,9 @@ public class Persona {
     
     public int getEdad(){
         return edad;
+    }
+    
+    public boolean getMovilidad(){
+        return movilidad;
     }
 }
