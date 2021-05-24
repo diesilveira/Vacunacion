@@ -14,7 +14,7 @@ public class Vacuna {
     
     
     public Vacuna(String tipoVacuna){
-        tipo = tipoVacuna
+        tipo = tipoVacuna;
     }
     
     public String getTipoVacuna(){
