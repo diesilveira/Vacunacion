@@ -28,9 +28,9 @@ public class ReceptorSolicitud implements Runnable{
     @Override
     public void run() {
         try{
-            String [] listaPeliculas = ManejadorArchivosGenerico.leerArchivo
+            String [] listaSolicitudes = ManejadorArchivosGenerico.leerArchivo
                                                       (rutaArchivo, false);
-            for(String lineaLeida : listaPeliculas){                
+            for(String lineaLeida : listaSolicitudes){                
                 String [] lineaAProcesar = lineaLeida.split("\\|");
                 Persona persona = new Persona (lineaAProcesar[0].trim(),
                              lineaAProcesar[1].trim(), lineaAProcesar[2].trim(), 
