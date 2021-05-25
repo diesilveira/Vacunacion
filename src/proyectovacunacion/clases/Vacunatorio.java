@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectovacunacion;
+package proyectovacunacion.clases;
+import proyectovacunacion.clases.Persona;
 import java.util.Queue;
 /**
  *
