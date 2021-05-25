@@ -16,6 +16,7 @@ public class ProyectoVacunacion {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        //Prueba
     }
     
     public static void inicializar(){
