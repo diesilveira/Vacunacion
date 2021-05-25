@@ -9,6 +9,11 @@ package proyectovacunacion.clases;
  *
  * @author dsilv
  */
-public class Agenda extends Thread{
-    
+public class Agenda implements Runnable {
+
+    @Override
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
