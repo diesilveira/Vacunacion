@@ -15,6 +15,7 @@ import proyectovacunacion.procesos.Seleccion;
 import proyectovacunacion.procesos.Captura;
 import proyectovacunacion.lectoresEscritores.GeneradorDeCriterios;
 import proyectovacunacion.lectoresEscritores.GeneradorDeVacunatorios;
+import proyectovacunacion.procesos.Agendar;
 
 /**
  *
@@ -53,17 +54,23 @@ public class ProyectoVacunacion {
         //Se abren los vacunatoris disponibles
         Queue <Vacunatorio> vacunatorios = new LinkedList<>();
         GeneradorDeVacunatorios generadorVacunatorios = new GeneradorDeVacunatorios();
-        vacunatorios = generadorVacunatorios.generarVacunatorios("src/proyectovacunacion/archivos/Vacunatorios.csv");        
+        vacunatorios = generadorVacunatorios.generarVacunatorios("src/proyectovacunacion/archivos/Vacunatorios.csv");
+        Agendar agenda1 = new Agendar(criterios, vacunatorios);
+        Thread hiloAgenda1 = new Thread(agenda1);
+        Agendar agenda2 = new Agendar(criterios, vacunatorios);
+        Thread hiloAgenda2 = new Thread(agenda2);
+        Agendar agenda3 = new Agendar(criterios, vacunatorios);
+        Thread hiloAgenda3 = new Thread(agenda3);
         
-        
-        
-        
-        
+           
         hiloRecepcion1.start();
         hiloRecepcion2.start();
         hiloRecepcion3.start();
         hiloCriterio1.start();
         hiloCriterio2.start();
         hiloCriterio3.start();
+        hiloAgenda1.start();
+        hiloAgenda2.start();
+        hiloAgenda3.start();
     }    
 }
