@@ -27,7 +27,7 @@ public class GeneradorDeCriterios {
     public Queue<Criterio> getCriteriosDeAgenda() {
         return criteriosDeAgenda;
     }    
-    
+    //Cuando generamos los criterios asumimos que vienen ordenados.
     public Queue <Criterio> generarCriterios (String rutaArchivo){
         String [] listaCriterios = ManejadorArchivosGenerico.leerArchivo
                                                       (rutaArchivo, false);

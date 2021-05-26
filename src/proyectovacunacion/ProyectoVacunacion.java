@@ -10,9 +10,11 @@ import java.util.Queue;
 import java.util.concurrent.Semaphore;
 import proyectovacunacion.clases.Persona;
 import proyectovacunacion.clases.Criterio;
+import proyectovacunacion.clases.Vacunatorio;
 import proyectovacunacion.procesos.Seleccion;
 import proyectovacunacion.procesos.Captura;
 import proyectovacunacion.lectoresEscritores.GeneradorDeCriterios;
+import proyectovacunacion.lectoresEscritores.GeneradorDeVacunatorios;
 
 /**
  *
@@ -49,6 +51,10 @@ public class ProyectoVacunacion {
         Thread hiloCriterio3 = new Thread(clasificador3);
         
         //Se abren los vacunatoris disponibles
+        Queue <Vacunatorio> vacunatorios = new LinkedList<>();
+        GeneradorDeVacunatorios generadorVacunatorios = new GeneradorDeVacunatorios();
+        vacunatorios = generadorVacunatorios.generarVacunatorios("src/proyectovacunacion/archivos/Vacunatorios.csv");        
+        
         
         
         
