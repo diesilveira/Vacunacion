@@ -28,7 +28,7 @@ public class ProyectoVacunacion {
         Queue <Persona> recepcion = new LinkedList<>();        
         Semaphore s_recepcion = new Semaphore(1, true);
         
-        Semaphore s_consumido = new Semaphore(1, true);
+        Semaphore s_consumido = new Semaphore(3, true);
         Semaphore s_actualizado = new Semaphore(0, true);
         
         Captura clienteWeb = new Captura("src/proyectovacunacion/archivos/SolicitudesWeb.csv", s_recepcion, s_consumido, s_actualizado, recepcion);
@@ -57,7 +57,7 @@ public class ProyectoVacunacion {
         hiloRecepcion2.start();
         hiloRecepcion3.start();
         hiloCriterio1.start();
-//        hiloCriterio2.start();
-//        hiloCriterio3.start();
+        hiloCriterio2.start();
+        hiloCriterio3.start();
     }    
 }

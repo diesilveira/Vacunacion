@@ -46,6 +46,7 @@ public class Seleccion implements Runnable{
                         if(persona.getGrupoPrioritario().equals(criterio.getGrupoPrioritario())){
                             s_criterio.acquire();
                             criterio.agregarPersona(persona);
+                            System.out.println(persona.getCedula() + " " + criterio.getGrupoPrioritario());
                             s_criterio.release();                            
                         }
                     }
