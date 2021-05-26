@@ -10,24 +10,31 @@ package proyectovacunacion.clases;
  * @author dsilv
  */
 public class Persona {
-    private String cedula;
-    private String departamento;
-    private String vacunatorioSeleccionado;
+
+    private final String cedula;
+    private final String departamento;
+    private final String vacunatorioSeleccionado;
     private String grupoPrioritario;
     private boolean habilitado;
+    private boolean vacunatorioDisponible;
+    private boolean asignadaVacuna;
+    private boolean asignadaAgenda;
     private int edad;
     private boolean movilidad;
-    
-    public Persona(String ced, String depto, String vs, boolean mov, String grupoPrioritario){
+
+    public Persona(String ced, String depto, String vs, boolean mov, String grupoPrioritario) {
         this.cedula = ced;
         this.departamento = depto;
         this.vacunatorioSeleccionado = vs;
         this.movilidad = mov;
         this.grupoPrioritario = grupoPrioritario;
         habilitado = false;
+        vacunatorioDisponible = false;
+        asignadaAgenda = false;
+        asignadaVacuna = false;
     }
-    
-    public void setGrupoPrioritario(String gp){
+
+    public void setGrupoPrioritario(String gp) {
         grupoPrioritario = gp;
     }
 
@@ -38,34 +45,60 @@ public class Persona {
     public void setMovilidad(boolean movilidad) {
         this.movilidad = movilidad;
     }
-    
-    public String getGrupoPrioritario(){
+
+    public String getGrupoPrioritario() {
         return grupoPrioritario;
     }
-    
-    public String getCedula(){
+
+    public String getCedula() {
         return cedula;
     }
-    
-    public String getDepartamento(){
+
+    public String getDepartamento() {
         return departamento;
     }
 
     public String getVacunatorioSeleccionado() {
         return vacunatorioSeleccionado;
-    }    
-    
-    public int getEdad(){
+    }
+
+    public int getEdad() {
         return edad;
     }
-    
-    public boolean getMovilidad(){
+
+    public boolean getMovilidad() {
         return movilidad;
     }
-    public void habilitado(){
-        this.habilitado= true;
+
+    public void habilitado() {
+        this.habilitado = true;
     }
-    public boolean getHabilitado(){
+
+    public void tieneVacunatorio() {
+        this.vacunatorioDisponible = true;
+    }
+
+    public void tieneVacuna() {
+        this.asignadaVacuna = true;
+    }
+
+    public void tieneAgenda() {
+        this.asignadaAgenda = true;
+    }
+
+    public boolean getHabilitado() {
+        return this.habilitado;
+    }
+
+    public boolean getVacunatorioDispo() {
+        return this.habilitado;
+    }
+
+    public boolean getAgendaDIspo() {
+        return this.habilitado;
+    }
+
+    public boolean getVacunaDIspo() {
         return this.habilitado;
     }
 }

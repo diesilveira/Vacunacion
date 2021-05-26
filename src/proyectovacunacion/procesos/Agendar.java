@@ -59,18 +59,18 @@ public class Agendar implements Runnable{
                 if(persona != null){
                     for (Vacunatorio vacunatorio: colaVacunacion){
                         if(vacunatorio.getId().equals(persona.getVacunatorioSeleccionado())){
-                            consigueVacunatorio= true;
+                            persona.tieneVacunatorio();
                              //Si tengo un vacunatorio no permito que nadie tome las vacunas o las fechas hasta que verifique 
                              vacunatorio.getMutexVacunatorio().acquire();                             
                              for(Vacuna vacuna : vacunatorio.getVacunasDisponibles())
-                                 if(vacuna.getTipo().equals(criterioSeleccionado.getTipoVacuna().getTipo()) && vacuna.getCantidad()>0){
-                                     consigueVacuna = true;
+                                 if(vacuna.getTipo().equals(criterioSeleccionado.getTipoVacuna().getTipo()) && vacuna.getCantidad()>0){                                  
+                                     persona.tieneVacuna();
                                      for (Agenda agenda : vacunatorio.getFechasDisponibles()){
                                          if(!agenda.isAsignada()){
                                              agenda.setAsignada(true);
                                              agenda.setPersonaAsignada(persona);
                                              vacuna.setCantidad(vacuna.getCantidad()- 1);
-                                             consigueAgenda = true;
+                                             persona.tieneAgenda();
                                              logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId());
                                              
                                              break;
@@ -82,13 +82,13 @@ public class Agendar implements Runnable{
                             break;
                         }
                     } 
-                    if(consigueVacunatorio ==false){
+                    if(persona.getVacunatorioDispo() ==false){
                         logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Vacunatorio seleccionado, no disponible");
                     }
-                    if(consigueVacunatorio ==true && consigueVacuna ==false){
+                    if(persona.getVacunatorioDispo() ==true && persona.getVacunaDIspo() ==false){
                         logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Sin vacunas disponibles");
                     }
-                    if(consigueVacunatorio ==true && consigueVacuna ==true && consigueAgenda ==false){
+                    if(persona.getVacunatorioDispo() ==true && persona.getVacunaDIspo() ==true && persona.getAgendaDIspo() ==false){
                         logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Agenda llena");
                     }
                 }
