@@ -11,7 +11,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.Semaphore;
 import proyectovacunacion.clases.Agenda;
-import proyectovacunacion.clases.Criterio;
 import proyectovacunacion.clases.Vacuna;
 import proyectovacunacion.clases.Vacunatorio;
 
@@ -24,7 +23,7 @@ public class GeneradorDeVacunatorios {
     private Queue <Vacunatorio> vacunatoriosDisponibles;
 
     public GeneradorDeVacunatorios() {
-        this.vacunatoriosDisponibles = new LinkedList<Vacunatorio>();        
+        this.vacunatoriosDisponibles = new LinkedList<>();        
     }
 
     public Queue<Vacunatorio> getVacunatoriosDisponbles() {

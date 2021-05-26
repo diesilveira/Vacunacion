@@ -5,8 +5,6 @@
  */
 package proyectovacunacion.clases;
 
-import java.time.LocalDateTime;
-import proyectovacunacion.clases.Persona;
 import java.util.Queue;
 import java.util.concurrent.Semaphore;
 

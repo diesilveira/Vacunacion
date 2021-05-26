@@ -21,7 +21,7 @@ public class GeneradorDeCriterios {
     private Queue <Criterio> criteriosDeAgenda;
 
     public GeneradorDeCriterios() {
-        this.criteriosDeAgenda = new LinkedList<Criterio>();        
+        this.criteriosDeAgenda = new LinkedList<>();        
     }
 
     public Queue<Criterio> getCriteriosDeAgenda() {

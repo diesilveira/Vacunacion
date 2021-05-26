@@ -8,6 +8,9 @@ package proyectovacunacion.lectoresEscritores;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -26,23 +29,23 @@ public class Logger {
     
     private static final String archivoLog = "src/proyectovacunacion/archivos/logs.txt";
     
-    public static void escribirLog(
-            String[] listaLineasArchivo) {
+    public void escribirLog(String nombreHilo,
+            String listaLineasArchivo) {
         FileWriter fw;
         try {
             fw = new FileWriter(archivoLog, true);
             BufferedWriter bw = new BufferedWriter(fw);
-            for (int i = 0; i < listaLineasArchivo.length; i++) {
-                String lineaActual = listaLineasArchivo[i];
-                bw.write(lineaActual);
-                bw.newLine();
-            }
+    
+            DateFormat dateFormat =  new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            Date date = new Date();
+            bw.write("[FECHA: "+dateFormat.format(date)+"] [HILO: " + nombreHilo +"] EVENTO: "+listaLineasArchivo);
+            bw.newLine();
+            
             bw.close();
             fw.close();
         } catch (IOException e) {
             System.out.println("Error al escribir el archivo "
                     + archivoLog);
-            e.printStackTrace();
         }
     }
     

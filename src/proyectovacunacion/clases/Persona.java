@@ -14,6 +14,7 @@ public class Persona {
     private String departamento;
     private String vacunatorioSeleccionado;
     private String grupoPrioritario;
+    private boolean habilitado;
     private int edad;
     private boolean movilidad;
     
@@ -23,6 +24,7 @@ public class Persona {
         this.vacunatorioSeleccionado = vs;
         this.movilidad = mov;
         this.grupoPrioritario = grupoPrioritario;
+        habilitado = false;
     }
     
     public void setGrupoPrioritario(String gp){
@@ -59,5 +61,11 @@ public class Persona {
     
     public boolean getMovilidad(){
         return movilidad;
+    }
+    public void habilitado(){
+        this.habilitado= true;
+    }
+    public boolean getHabilitado(){
+        return this.habilitado;
     }
 }

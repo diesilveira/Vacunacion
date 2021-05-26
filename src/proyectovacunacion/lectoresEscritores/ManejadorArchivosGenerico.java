@@ -1,10 +1,8 @@
 package proyectovacunacion.lectoresEscritores;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -14,31 +12,7 @@ import java.util.ArrayList;
  */
 public class ManejadorArchivosGenerico {
 
-    /**
-     * Método que escribe un un String [] en un archivo.
-     * @param nombreCompletoArchivo
-     * @param listaLineasArchivo lista con las lineas del archivo
-     */
-    public static void escribirArchivo(String nombreCompletoArchivo,
-            String[] listaLineasArchivo) {
-        FileWriter fw;
-        try {
-            fw = new FileWriter(nombreCompletoArchivo, true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            for (int i = 0; i < listaLineasArchivo.length; i++) {
-                String lineaActual = listaLineasArchivo[i];
-                bw.write(lineaActual);
-                bw.newLine();
-            }
-            bw.close();
-            fw.close();
-        } catch (IOException e) {
-            System.out.println("Error al escribir el archivo "
-                    + nombreCompletoArchivo);
-            e.printStackTrace();
-        }
-    }
-    
+
     /**
      * Método que lee un archivo.
      * @param nombreCompletoArchivo
@@ -47,7 +21,7 @@ public class ManejadorArchivosGenerico {
      */
     public static String[] leerArchivo(String nombreCompletoArchivo, boolean ignoreHeader) {
         FileReader fr;
-        ArrayList<String> listaLineasArchivo = new ArrayList<String>();
+        ArrayList<String> listaLineasArchivo = new ArrayList<>();
         try {
             fr = new FileReader(nombreCompletoArchivo);
             BufferedReader br = new BufferedReader(fr);
@@ -62,11 +36,9 @@ public class ManejadorArchivosGenerico {
         } catch (FileNotFoundException e) {
             System.out.println("Error al leer el archivo "
                     + nombreCompletoArchivo);
-            e.printStackTrace();
         } catch (IOException e) {
             System.out.println("Error al leer el archivo "
                     + nombreCompletoArchivo);
-            e.printStackTrace();
         }
 //		System.out.println("Archivo leido satisfactoriamente");
 

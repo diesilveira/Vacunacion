@@ -16,13 +16,12 @@ import proyectovacunacion.lectoresEscritores.Logger;
  * @author danie
  */
 public class Captura implements Runnable{
-    private String rutaArchivo;
-    private Semaphore s;
-    private Semaphore s_consumido;
-    private Semaphore s_actualizado;
-    private Queue <Persona> colaRecepcion;
-    private Logger logger;
-    private String[] log;
+    private final String rutaArchivo;
+    private final Semaphore s;
+    private final Semaphore s_consumido;
+    private final Semaphore s_actualizado;
+    private final Queue <Persona> colaRecepcion;
+    private final Logger logger;
     
     public Captura (String rutaArchivo, Semaphore s, Semaphore c,Semaphore a, Queue<Persona> colaRecepcion){
         this.rutaArchivo = rutaArchivo;
@@ -30,8 +29,7 @@ public class Captura implements Runnable{
         this.s_consumido = c;
         this.s_actualizado = a;        
         this.colaRecepcion = colaRecepcion;
-        this.logger = new Logger();
-        this.log= new String[1];        
+        this.logger = new Logger();  
     }
     
     @Override
@@ -49,9 +47,8 @@ public class Captura implements Runnable{
                 s.acquire();
                 
                 colaRecepcion.add(persona);
-                log[0] = "Nueva persona ingresada al sistema con el documento: " +persona.getCedula();
-                logger.escribirLog(log);
-                //System.out.println(persona.getCedula());
+            
+                this.logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + "Nueva persona ingresada al sistema.");
                 
                 s.release();
                 s_actualizado.release();
