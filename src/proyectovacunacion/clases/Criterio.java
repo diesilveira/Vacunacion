@@ -11,7 +11,7 @@ import java.util.Queue;
  *
  * @author dsilv
  */
-public class Criterio implements Runnable{
+public class Criterio{
 
     private String nombre;
     private String descripcion;
@@ -58,19 +58,11 @@ public class Criterio implements Runnable{
             return true;
         } catch (Exception ex) {
             System.out.println("Error " + ex.getMessage() + " al borrar  "
-                    + p.getCedula() + " del vacunatorio" + this.nombre);
+                    + p.getCedula() + " del criterio" + this.nombre);
             return false;
         }
 
     }
 
-    @Override
-    public void run() {
-        
-
-
-
-
-    }
 
 }
