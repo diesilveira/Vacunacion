@@ -40,6 +40,7 @@ public class Seleccion implements Runnable{
     public void run() {
         while(true){
             try{
+
                     s_actualizado.acquire();
                     s_recepcion.acquire();
                     Persona persona = colaRecepcion.remove(); 
@@ -59,7 +60,9 @@ public class Seleccion implements Runnable{
                             criterio.getMutex().release();
                             criterio.getActualizado().release();
                         }
+
                     }
+                
                      
             }catch(InterruptedException ex){            
             } 

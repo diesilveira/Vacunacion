@@ -14,8 +14,7 @@ import proyectovacunacion.clases.Vacuna;
  *
  * @author dsilv
  */
-public class Criterio{
-    
+public class Criterio{    
     
     private int prioridad;
     private String grupoPrioritario;
@@ -86,10 +85,7 @@ public class Criterio{
 
     public void setActualizado(Semaphore actualizado) {
         this.actualizado = actualizado;
-    }
-    
-    
-    
+    }    
 
     public boolean agregarPersona(Persona p) {
 
@@ -117,6 +113,4 @@ public class Criterio{
         }
 
     }
-
-
 }

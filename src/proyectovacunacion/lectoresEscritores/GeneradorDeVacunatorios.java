@@ -52,9 +52,7 @@ public class GeneradorDeVacunatorios {
                 
                 Vacunatorio vacunatorio = new Vacunatorio(lineaAProcesar[0].trim(),
                                         vacunas, fechasDisponibles);
-                vacunatorio.setMutexVacuna(new Semaphore(1, true));
-                vacunatorio.setMutexFechasDisponibles(new Semaphore(1, true));
-                vacunatorio.setMutexAgendasFuturas(new Semaphore(1, true));
+                vacunatorio.setMutexVacunatorio(new Semaphore(1, true));
                 vacunatoriosDisponibles.add(vacunatorio);
             
         }

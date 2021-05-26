@@ -12,15 +12,15 @@ package proyectovacunacion.clases;
 public class Persona {
     private String cedula;
     private String departamento;
-    private String barrio;
+    private String vacunatorioSeleccionado;
     private String grupoPrioritario;
     private int edad;
     private boolean movilidad;
     
-    public Persona(String ced, String depto, String bo, boolean mov, String grupoPrioritario){
+    public Persona(String ced, String depto, String vs, boolean mov, String grupoPrioritario){
         this.cedula = ced;
         this.departamento = depto;
-        this.barrio = bo;
+        this.vacunatorioSeleccionado = vs;
         this.movilidad = mov;
         this.grupoPrioritario = grupoPrioritario;
     }
@@ -48,10 +48,10 @@ public class Persona {
     public String getDepartamento(){
         return departamento;
     }
-    
-     public String getBarrio(){
-        return barrio;
-    }
+
+    public String getVacunatorioSeleccionado() {
+        return vacunatorioSeleccionado;
+    }    
     
     public int getEdad(){
         return edad;

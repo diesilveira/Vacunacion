@@ -25,7 +25,7 @@ public class Agenda  {
     public boolean isAsignada() {
         return asignada;
     }
-
+    
     public void setAsignada(boolean asignada) {
         this.asignada = asignada;
     }

@@ -1,0 +1,18 @@
+Nueva persona ingresada al sistema con el documento: 22345678
+Nueva persona ingresada al sistema con el documento: 32345678
+Nueva persona ingresada al sistema con el documento: 12345678
+[Thread-3]Documento: 22345678 insertado en cola de Prioridad: Mayor80
+[Thread-4]Documento: 32345678 insertado en cola de Prioridad: Mayor80
+[Thread-5]Documento: 12345678 insertado en cola de Prioridad: Mayor80
+Nueva persona ingresada al sistema con el documento: 23456789
+Nueva persona ingresada al sistema con el documento: 33456789
+Nueva persona ingresada al sistema con el documento: 13456789
+[Thread-3]Documento: 23456789 insertado en cola de Prioridad: Comorbilidades
+[Thread-4]Documento: 33456789 insertado en cola de Prioridad: Comorbilidades
+[Thread-5]Documento: 13456789 insertado en cola de Prioridad: Comorbilidades
+Nueva persona ingresada al sistema con el documento: 24578985
+Nueva persona ingresada al sistema con el documento: 34578985
+Nueva persona ingresada al sistema con el documento: 14578985
+[Thread-3]Documento: 24578985 insertado en cola de Prioridad: PersonalDeSalud
+[Thread-4]Documento: 34578985 insertado en cola de Prioridad: PersonalDeSalud
+[Thread-5]Documento: 14578985 insertado en cola de Prioridad: PersonalDeSalud
