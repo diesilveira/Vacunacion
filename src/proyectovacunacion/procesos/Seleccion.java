@@ -15,17 +15,15 @@ import proyectovacunacion.clases.Persona;
  * @author danie
  */
 public class Seleccion implements Runnable{   
-    
-    private Semaphore s_criterio;
+        
     private Semaphore s_consumido;
     private Semaphore s_recepcion;
     private Semaphore s_actualizado;
     private Queue <Persona> colaRecepcion;
     private Queue <Criterio> colaCriterio;
 
-    public Seleccion(Semaphore s_recepcion,Semaphore s_criterio, Semaphore c, Semaphore a, Queue<Persona> colaRecepcion, Queue<Criterio> colaCriterio) {
+    public Seleccion(Semaphore s_recepcion, Semaphore c, Semaphore a, Queue<Persona> colaRecepcion, Queue<Criterio> colaCriterio) {
         this.s_recepcion = s_recepcion;
-        this.s_criterio = s_criterio;
         this.s_consumido = c;
         this.s_actualizado = a;
         this.colaRecepcion = colaRecepcion;
@@ -44,10 +42,14 @@ public class Seleccion implements Runnable{
                     
                     for(Criterio criterio: colaCriterio){
                         if(persona.getGrupoPrioritario().equals(criterio.getGrupoPrioritario())){
-                            s_criterio.acquire();
+                            criterio.getConsumido().acquire();
+                            criterio.getMutex().acquire();
+                            
                             criterio.agregarPersona(persona);
-                            System.out.println(persona.getCedula() + " " + criterio.getGrupoPrioritario());
-                            s_criterio.release();                            
+                            System.out.println("Documento: " +persona.getCedula() + " insertado en cola de Prioridad: " + criterio.getGrupoPrioritario());                            
+                            
+                            criterio.getMutex().release();
+                            criterio.getActualizado().release();
                         }
                     }
                      

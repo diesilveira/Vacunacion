@@ -7,6 +7,7 @@ package proyectovacunacion.lectoresEscritores;
 
 import java.util.Queue;
 import java.util.LinkedList;
+import java.util.concurrent.Semaphore;
 import proyectovacunacion.clases.Vacuna;
 import proyectovacunacion.clases.Criterio;
 
@@ -16,6 +17,7 @@ import proyectovacunacion.clases.Criterio;
  */
 public class LectorDeCriterios {
     
+       
     private String rutaArchivo;
     private Queue <Criterio> criteriosDeAgenda;
 
@@ -32,10 +34,11 @@ public class LectorDeCriterios {
                                                       (rutaArchivo, false);
             for(String lineaLeida : listaCriterios){                
                 String [] lineaAProcesar = lineaLeida.split("\\|");
-                Criterio criterio = new Criterio 
-                                    (Integer.parseInt(lineaAProcesar[0].trim()),
-                                        lineaAProcesar[1].trim(), 
-                                         new Vacuna (lineaAProcesar[2].trim()));
+                Criterio criterio = new Criterio(Integer.parseInt(lineaAProcesar[0].trim()),
+                                        lineaAProcesar[1].trim(), new Vacuna (lineaAProcesar[2].trim()));
+                criterio.setMutex(new Semaphore(1, true));
+                criterio.setConsumido(new Semaphore(3, true));
+                criterio.setActualizado(new Semaphore(0, true));
                 criteriosDeAgenda.add(criterio);
         }
         return this.criteriosDeAgenda;

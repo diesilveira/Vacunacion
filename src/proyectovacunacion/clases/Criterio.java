@@ -7,6 +7,7 @@ package proyectovacunacion.clases;
 
 import java.util.Queue;
 import java.util.LinkedList;
+import java.util.concurrent.Semaphore;
 import proyectovacunacion.clases.Vacuna;
 
 /**
@@ -14,9 +15,13 @@ import proyectovacunacion.clases.Vacuna;
  * @author dsilv
  */
 public class Criterio{
-
+    
+    
     private int prioridad;
     private String grupoPrioritario;
+    private Semaphore mutex;
+    private Semaphore consumido;
+    private Semaphore actualizado; 
     private Vacuna tipoVacuna;
     private Queue<Persona> personasEnCriterio;
 
@@ -59,6 +64,31 @@ public class Criterio{
         this.personasEnCriterio = personasEnCriterio;
     }
 
+    public Semaphore getMutex() {
+        return mutex;
+    }
+
+    public Semaphore getConsumido() {
+        return consumido;
+    }
+
+    public Semaphore getActualizado() {
+        return actualizado;
+    }
+
+    public void setMutex(Semaphore mutex) {
+        this.mutex = mutex;
+    }
+
+    public void setConsumido(Semaphore consumido) {
+        this.consumido = consumido;
+    }
+
+    public void setActualizado(Semaphore actualizado) {
+        this.actualizado = actualizado;
+    }
+    
+    
     
 
     public boolean agregarPersona(Persona p) {

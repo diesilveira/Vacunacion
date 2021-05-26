@@ -26,8 +26,7 @@ public class ProyectoVacunacion {
     public static void main(String[] args) {
         //Se simula la recepción de solicitudes de diferentes clientes.
         Queue <Persona> recepcion = new LinkedList<>();        
-        Semaphore s_recepcion = new Semaphore(1, true);
-        
+        Semaphore s_recepcion = new Semaphore(1, true);        
         Semaphore s_consumido = new Semaphore(3, true);
         Semaphore s_actualizado = new Semaphore(0, true);
         
@@ -41,13 +40,12 @@ public class ProyectoVacunacion {
         //La Agenda se abre para determinados grupos prioritarios (Criterios).
         Queue <Criterio> criterios = new LinkedList<>(); 
         LectorDeCriterios criterioAgenda = new LectorDeCriterios ();
-        criterios = criterioAgenda.generarCriterios("src/proyectovacunacion/archivos/CriteriosDeAgenda.csv");
-        Semaphore s_criterio = new Semaphore(1, true);
-        Seleccion clasificador1 = new Seleccion(s_recepcion, s_criterio, s_consumido, s_actualizado,recepcion, criterios);
+        criterios = criterioAgenda.generarCriterios("src/proyectovacunacion/archivos/CriteriosDeAgenda.csv");        
+        Seleccion clasificador1 = new Seleccion(s_recepcion, s_consumido, s_actualizado,recepcion, criterios);
         Thread hiloCriterio1 = new Thread(clasificador1);
-        Seleccion clasificador2 = new Seleccion(s_recepcion, s_criterio,s_consumido, s_actualizado,recepcion, criterios);
+        Seleccion clasificador2 = new Seleccion(s_recepcion, s_consumido, s_actualizado,recepcion, criterios);
         Thread hiloCriterio2 = new Thread(clasificador2);
-        Seleccion clasificador3 = new Seleccion(s_recepcion, s_criterio,s_consumido, s_actualizado,recepcion, criterios);
+        Seleccion clasificador3 = new Seleccion(s_recepcion, s_consumido, s_actualizado,recepcion, criterios);
         Thread hiloCriterio3 = new Thread(clasificador3); 
         
         

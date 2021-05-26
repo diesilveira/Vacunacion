@@ -43,8 +43,10 @@ public class Captura implements Runnable{
                                                       lineaAProcesar[4].trim());
                 s_consumido.acquire();
                 s.acquire();
+                
                 colaRecepcion.add(persona);
                 System.out.println(persona.getCedula());
+                
                 s.release();
                 s_actualizado.release();
             }      
