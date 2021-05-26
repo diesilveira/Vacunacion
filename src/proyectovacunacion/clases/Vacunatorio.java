@@ -24,17 +24,19 @@ public class Vacunatorio {
                         los dos nuemros el numero de vacunatorio en ese barrio
      */    
     private Queue<Vacuna> vacunasDisponibles;
-    private Semaphore mutexVacuna;
+    private Semaphore mutexVacunatorio;
     private Queue<Agenda> fechasDisponibles;
-    private Semaphore mutexFechasDisponibles;
     private Queue<Persona> agendasFuturas;//Guarda a aquellas personas que no se pudieron agendar
-    private Semaphore mutexAgendasFuturas;
 
     public Vacunatorio(String id, Queue<Vacuna> vacunasDisponibles, Queue<Agenda> fechasDisponibles) {
         this.id = id;
         this.vacunasDisponibles = vacunasDisponibles;
         this.fechasDisponibles = fechasDisponibles;
     }
+
+    public String getId() {
+        return id;
+    }   
 
     public Queue<Vacuna> getVacunasDisponibles() {
         return vacunasDisponibles;
@@ -60,27 +62,11 @@ public class Vacunatorio {
         this.agendasFuturas = agendasFuturas;
     }
 
-    public Semaphore getMutexVacuna() {
-        return mutexVacuna;
+    public Semaphore getMutexVacunatorio() {
+        return mutexVacunatorio;
     }
 
-    public void setMutexVacuna(Semaphore mutexVacuna) {
-        this.mutexVacuna = mutexVacuna;
-    }
-
-    public Semaphore getMutexFechasDisponibles() {
-        return mutexFechasDisponibles;
-    }
-
-    public void setMutexFechasDisponibles(Semaphore mutexFechasDisponibles) {
-        this.mutexFechasDisponibles = mutexFechasDisponibles;
-    }
-
-    public Semaphore getMutexAgendasFuturas() {
-        return mutexAgendasFuturas;
-    }
-
-    public void setMutexAgendasFuturas(Semaphore mutexAgendasFuturas) {
-        this.mutexAgendasFuturas = mutexAgendasFuturas;
-    }    
+    public void setMutexVacunatorio(Semaphore mutexVacunatorio) {
+        this.mutexVacunatorio = mutexVacunatorio;
+    }       
 }

@@ -34,24 +34,24 @@ public class Seleccion implements Runnable{
     public void run() {
         while(true){
             try{
-                    s_actualizado.acquire();
-                    s_recepcion.acquire();
-                    Persona persona = colaRecepcion.remove(); 
-                    s_recepcion.release();
-                    s_consumido.release();
-                    
-                    for(Criterio criterio: colaCriterio){
-                        if(persona.getGrupoPrioritario().equals(criterio.getGrupoPrioritario())){
-                            criterio.getConsumido().acquire();
-                            criterio.getMutex().acquire();
-                            
-                            criterio.agregarPersona(persona);
-                            System.out.println("Documento: " +persona.getCedula() + " insertado en cola de Prioridad: " + criterio.getGrupoPrioritario());                            
-                            
-                            criterio.getMutex().release();
-                            criterio.getActualizado().release();
-                        }
+                s_actualizado.acquire();
+                s_recepcion.acquire();
+                Persona persona = colaRecepcion.remove(); 
+                s_recepcion.release();
+                s_consumido.release();
+
+                for(Criterio criterio: colaCriterio){
+                    if(persona.getGrupoPrioritario().equals(criterio.getGrupoPrioritario())){
+                        criterio.getConsumido().acquire();
+                        criterio.getMutex().acquire();
+
+                        criterio.agregarPersona(persona);
+                        System.out.println("Documento: " +persona.getCedula() + " insertado en cola de Prioridad: " + criterio.getGrupoPrioritario());                            
+
+                        criterio.getMutex().release();
+                        criterio.getActualizado().release();
                     }
+                }
                      
             }catch(InterruptedException ex){            
             } 

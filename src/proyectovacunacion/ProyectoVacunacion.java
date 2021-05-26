@@ -60,8 +60,7 @@ public class ProyectoVacunacion {
         Agendar agenda2 = new Agendar(criterios, vacunatorios);
         Thread hiloAgenda2 = new Thread(agenda2);
         Agendar agenda3 = new Agendar(criterios, vacunatorios);
-        Thread hiloAgenda3 = new Thread(agenda3);
-        
+        Thread hiloAgenda3 = new Thread(agenda3);        
            
         hiloRecepcion1.start();
         hiloRecepcion2.start();
