@@ -5,8 +5,10 @@
  */
 package proyectovacunacion.clases;
 
+import java.time.LocalDateTime;
 import proyectovacunacion.clases.Persona;
 import java.util.Queue;
+import java.util.concurrent.Semaphore;
 
 /**
  *
@@ -14,61 +16,71 @@ import java.util.Queue;
  */
 public class Vacunatorio {
 
-    private String departamento; // Departamento al que pertenece
-    private String barrio;       // Barrio en que se encuentra
     private String id;
     /*identificacion segun departamento barrio y numero
                         Ejemplo MOTC01 -> Montevideo Tres Cruces Vacunatorio 1
                         (puede haber varios por barrio)
                         Las 2 primeras letras depto. las otras dos barrio,
                         los dos nuemros el numero de vacunatorio en ese barrio
-     */
-    private Queue<Persona> colaDePersonas;
-    private int vacunasDisponibles;
+     */    
+    private Queue<Vacuna> vacunasDisponibles;
+    private Semaphore mutexVacuna;
+    private Queue<Agenda> fechasDisponibles;
+    private Semaphore mutexFechasDisponibles;
+    private Queue<Persona> agendasFuturas;//Guarda a aquellas personas que no se pudieron agendar
+    private Semaphore mutexAgendasFuturas;
 
-    public Vacunatorio(String depto, String bo, String nId) {
-        departamento = depto;
-        barrio = bo;
-        id = nId;
+    public Vacunatorio(String id, Queue<Vacuna> vacunasDisponibles, Queue<Agenda> fechasDisponibles) {
+        this.id = id;
+        this.vacunasDisponibles = vacunasDisponibles;
+        this.fechasDisponibles = fechasDisponibles;
     }
 
-    public boolean agregarPersona(Persona p) {
-        if (vacunasDisponibles > 0) {
-            try {
-                colaDePersonas.add(p);
-                vacunasDisponibles--;
-                return true;
-            } catch (Exception ex) {
-                System.out.println("Error " + ex.getMessage() + " al cargar  "
-                        + p.getCedula() + " al vacunatorio" + this.id);
-                return false;
-            }
-        } else {
-            return false;
-        }
-
-    }
-
-    public boolean borrarPersona(Persona p) {
-
-        try {
-            colaDePersonas.remove(p);
-            vacunasDisponibles++;
-            return true;
-        } catch (Exception ex) {
-            System.out.println("Error " + ex.getMessage() + " al borrar  "
-                    + p.getCedula() + " del vacunatorio" + this.id);
-            return false;
-        }
-
-    }
-
-    public int getVacunasDisponibles() {
+    public Queue<Vacuna> getVacunasDisponibles() {
         return vacunasDisponibles;
     }
 
-    public void setVacunasDisponibles(int vacunas) {
-        vacunasDisponibles = vacunas;
+    public void setVacunasDisponibles(Queue<Vacuna> vacunasDisponibles) {
+        this.vacunasDisponibles = vacunasDisponibles;
     }
 
+    public Queue<Agenda> getFechasDisponibles() {
+        return fechasDisponibles;
+    }
+
+    public void setFechasDisponibles(Queue<Agenda> fechasDisponibles) {
+        this.fechasDisponibles = fechasDisponibles;
+    }    
+
+    public Queue<Persona> getAgendasFuturas() {
+        return agendasFuturas;
+    }
+
+    public void setAgendasFuturas(Queue<Persona> agendasFuturas) {
+        this.agendasFuturas = agendasFuturas;
+    }
+
+    public Semaphore getMutexVacuna() {
+        return mutexVacuna;
+    }
+
+    public void setMutexVacuna(Semaphore mutexVacuna) {
+        this.mutexVacuna = mutexVacuna;
+    }
+
+    public Semaphore getMutexFechasDisponibles() {
+        return mutexFechasDisponibles;
+    }
+
+    public void setMutexFechasDisponibles(Semaphore mutexFechasDisponibles) {
+        this.mutexFechasDisponibles = mutexFechasDisponibles;
+    }
+
+    public Semaphore getMutexAgendasFuturas() {
+        return mutexAgendasFuturas;
+    }
+
+    public void setMutexAgendasFuturas(Semaphore mutexAgendasFuturas) {
+        this.mutexAgendasFuturas = mutexAgendasFuturas;
+    }    
 }

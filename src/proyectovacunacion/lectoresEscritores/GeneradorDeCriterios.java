@@ -15,13 +15,12 @@ import proyectovacunacion.clases.Criterio;
  *
  * @author danie
  */
-public class LectorDeCriterios {
-    
+public class GeneradorDeCriterios {    
        
     private String rutaArchivo;
     private Queue <Criterio> criteriosDeAgenda;
 
-    public LectorDeCriterios() {
+    public GeneradorDeCriterios() {
         this.criteriosDeAgenda = new LinkedList<Criterio>();        
     }
 
@@ -42,7 +41,5 @@ public class LectorDeCriterios {
                 criteriosDeAgenda.add(criterio);
         }
         return this.criteriosDeAgenda;
-    }
-    
-    
+    }   
 }

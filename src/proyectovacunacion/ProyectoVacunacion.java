@@ -12,7 +12,7 @@ import proyectovacunacion.clases.Persona;
 import proyectovacunacion.clases.Criterio;
 import proyectovacunacion.procesos.Seleccion;
 import proyectovacunacion.procesos.Captura;
-import proyectovacunacion.lectoresEscritores.LectorDeCriterios;
+import proyectovacunacion.lectoresEscritores.GeneradorDeCriterios;
 
 /**
  *
@@ -39,14 +39,16 @@ public class ProyectoVacunacion {
         
         //La Agenda se abre para determinados grupos prioritarios (Criterios).
         Queue <Criterio> criterios = new LinkedList<>(); 
-        LectorDeCriterios criterioAgenda = new LectorDeCriterios ();
+        GeneradorDeCriterios criterioAgenda = new GeneradorDeCriterios ();
         criterios = criterioAgenda.generarCriterios("src/proyectovacunacion/archivos/CriteriosDeAgenda.csv");        
         Seleccion clasificador1 = new Seleccion(s_recepcion, s_consumido, s_actualizado,recepcion, criterios);
         Thread hiloCriterio1 = new Thread(clasificador1);
         Seleccion clasificador2 = new Seleccion(s_recepcion, s_consumido, s_actualizado,recepcion, criterios);
         Thread hiloCriterio2 = new Thread(clasificador2);
         Seleccion clasificador3 = new Seleccion(s_recepcion, s_consumido, s_actualizado,recepcion, criterios);
-        Thread hiloCriterio3 = new Thread(clasificador3); 
+        Thread hiloCriterio3 = new Thread(clasificador3);
+        
+        //Se abren los vacunatoris disponibles
         
         
         

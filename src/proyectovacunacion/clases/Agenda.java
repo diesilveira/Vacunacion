@@ -5,15 +5,36 @@
  */
 package proyectovacunacion.clases;
 
+import java.time.LocalDateTime;
+import java.util.Queue;
+
 /**
  *
  * @author dsilv
  */
-public class Agenda implements Runnable {
+public class Agenda  {
+    private LocalDateTime fechasDisponible;
+    private boolean asignada;
+    private Persona personaAsignada;
 
-    @Override
-    public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Agenda(LocalDateTime fechasDisponible) {
+        this.fechasDisponible = fechasDisponible;
+        this.asignada = false;
     }
 
+    public boolean isAsignada() {
+        return asignada;
+    }
+
+    public void setAsignada(boolean asignada) {
+        this.asignada = asignada;
+    }
+
+    public Persona getPersonaAsignada() {
+        return personaAsignada;
+    }
+
+    public void setPersonaAsignada(Persona personaAsignada) {
+        this.personaAsignada = personaAsignada;
+    }
 }

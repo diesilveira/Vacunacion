@@ -11,13 +11,30 @@ package proyectovacunacion.clases;
  */
 public class Vacuna {
     private String tipo;
-    
+    private int cantidad;
     
     public Vacuna(String tipoVacuna){
-        tipo = tipoVacuna;
-    }
+        this.tipo = tipoVacuna;
+    }  
     
-    public String getTipoVacuna(){
-     return tipo;
+    public Vacuna(String tipoVacuna, int cantidad){
+        this.tipo = tipoVacuna;
+        this.cantidad = cantidad;
+    }   
+
+    public String getTipo() {
+        return tipo;
     }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }    
 }
