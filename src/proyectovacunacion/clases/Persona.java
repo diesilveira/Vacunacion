@@ -17,15 +17,24 @@ public class Persona {
     private int edad;
     private boolean movilidad;
     
-    public Persona(String ced, String depto, String bo, boolean mov){
-        cedula = ced;
-        departamento = depto;
-        barrio = bo;
-        movilidad = mov;
+    public Persona(String ced, String depto, String bo, boolean mov, String grupoPrioritario){
+        this.cedula = ced;
+        this.departamento = depto;
+        this.barrio = bo;
+        this.movilidad = mov;
+        this.grupoPrioritario = grupoPrioritario;
     }
     
     public void setGrupoPrioritario(String gp){
         grupoPrioritario = gp;
+    }
+
+    public boolean isMovilidad() {
+        return movilidad;
+    }
+
+    public void setMovilidad(boolean movilidad) {
+        this.movilidad = movilidad;
     }
     
     public String getGrupoPrioritario(){

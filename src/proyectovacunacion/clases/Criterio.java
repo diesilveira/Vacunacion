@@ -6,6 +6,8 @@
 package proyectovacunacion.clases;
 
 import java.util.Queue;
+import java.util.LinkedList;
+import proyectovacunacion.clases.Vacuna;
 
 /**
  *
@@ -13,29 +15,51 @@ import java.util.Queue;
  */
 public class Criterio{
 
-    private String nombre;
-    private String descripcion;
+    private int prioridad;
+    private String grupoPrioritario;
+    private Vacuna tipoVacuna;
     private Queue<Persona> personasEnCriterio;
+
+    public Criterio(int prioridad, String grupoPrioritario, Vacuna tipoVacuna) {
+        this.prioridad = prioridad;
+        this.grupoPrioritario = grupoPrioritario;
+        this.tipoVacuna = tipoVacuna;
+        this.personasEnCriterio = new LinkedList();
+    }   
+
+    public int getPrioridad() {
+        return prioridad;
+    }
+
+    public Vacuna getTipoVacuna() {
+        return tipoVacuna;
+    }
+
+    public void setTipoVacuna(Vacuna tipoVacuna) {
+        this.tipoVacuna = tipoVacuna;
+    }
+
+    public void setPrioridad(int prioridad) {
+        this.prioridad = prioridad;
+    }
+
+    public String getGrupoPrioritario() {
+        return grupoPrioritario;
+    }
+
+    public void setGrupoPrioritario(String grupoPrioritario) {
+        this.grupoPrioritario = grupoPrioritario;
+    }
 
     public Queue<Persona> getPersonasEnCriterio() {
         return personasEnCriterio;
     }
 
-    public Criterio(String nombre) {
-        this.nombre = nombre;
+    public void setPersonasEnCriterio(Queue<Persona> personasEnCriterio) {
+        this.personasEnCriterio = personasEnCriterio;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+    
 
     public boolean agregarPersona(Persona p) {
 
@@ -45,7 +69,7 @@ public class Criterio{
             return true;
         } catch (Exception ex) {
             System.out.println("Error " + ex.getMessage() + " al cargar  "
-                    + p.getCedula() + " al criterio " + this.nombre);
+                    + p.getCedula() + " al criterio " + this.grupoPrioritario);
             return false;
         }
 
@@ -58,7 +82,7 @@ public class Criterio{
             return true;
         } catch (Exception ex) {
             System.out.println("Error " + ex.getMessage() + " al borrar  "
-                    + p.getCedula() + " del criterio" + this.nombre);
+                    + p.getCedula() + " del criterio" + this.grupoPrioritario);
             return false;
         }
 

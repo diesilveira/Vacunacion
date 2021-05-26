@@ -9,7 +9,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.Semaphore;
 import proyectovacunacion.clases.Persona;
-import proyectovacunacion.hilos.ReceptorSolicitud;
+import proyectovacunacion.clases.Criterio;
+import proyectovacunacion.procesos.Seleccion;
+import proyectovacunacion.procesos.Captura;
+import proyectovacunacion.lectoresEscritores.LectorDeCriterios;
 
 /**
  *
@@ -23,15 +26,38 @@ public class ProyectoVacunacion {
     public static void main(String[] args) {
         //Se simula la recepción de solicitudes de diferentes clientes.
         Queue <Persona> recepcion = new LinkedList<>();        
-        Semaphore semaphore = new Semaphore(1, true);
-        ReceptorSolicitud clienteWeb = new ReceptorSolicitud("src/proyectovacunacion/archivos/SolicitudesWeb.csv", semaphore, recepcion);
-        ReceptorSolicitud clienteApp = new ReceptorSolicitud("src/proyectovacunacion/archivos/SolicitudesApp.csv", semaphore, recepcion);
-        ReceptorSolicitud clienteLinea = new ReceptorSolicitud("src/proyectovacunacion/archivos/SolicitudesLinea.csv", semaphore, recepcion);
-        Thread hiloRecepcion1 = new Thread(clienteWeb);      
+        Semaphore s_recepcion = new Semaphore(1, true);
+        
+        Semaphore s_consumido = new Semaphore(1, true);
+        Semaphore s_actualizado = new Semaphore(0, true);
+        
+        Captura clienteWeb = new Captura("src/proyectovacunacion/archivos/SolicitudesWeb.csv", s_recepcion, s_consumido, s_actualizado, recepcion);
+        Thread hiloRecepcion1 = new Thread(clienteWeb); 
+        Captura clienteApp = new Captura("src/proyectovacunacion/archivos/SolicitudesApp.csv", s_recepcion, s_consumido, s_actualizado, recepcion);
+        Thread hiloRecepcion2 = new Thread(clienteApp); 
+        Captura clienteLinea = new Captura("src/proyectovacunacion/archivos/SolicitudesLinea.csv", s_recepcion, s_consumido, s_actualizado, recepcion);
+        Thread hiloRecepcion3 = new Thread(clienteLinea);
+        
+        //La Agenda se abre para determinados grupos prioritarios (Criterios).
+        Queue <Criterio> criterios = new LinkedList<>(); 
+        LectorDeCriterios criterioAgenda = new LectorDeCriterios ();
+        criterios = criterioAgenda.generarCriterios("src/proyectovacunacion/archivos/CriteriosDeAgenda.csv");
+        Semaphore s_criterio = new Semaphore(1, true);
+        Seleccion clasificador1 = new Seleccion(s_recepcion, s_criterio, s_consumido, s_actualizado,recepcion, criterios);
+        Thread hiloCriterio1 = new Thread(clasificador1);
+        Seleccion clasificador2 = new Seleccion(s_recepcion, s_criterio,s_consumido, s_actualizado,recepcion, criterios);
+        Thread hiloCriterio2 = new Thread(clasificador2);
+        Seleccion clasificador3 = new Seleccion(s_recepcion, s_criterio,s_consumido, s_actualizado,recepcion, criterios);
+        Thread hiloCriterio3 = new Thread(clasificador3); 
+        
+        
+        
+        
         hiloRecepcion1.start();
-        Thread hiloRecepcion2 = new Thread(clienteApp);      
         hiloRecepcion2.start();
-        Thread hiloRecepcion3 = new Thread(clienteLinea);      
         hiloRecepcion3.start();
+        hiloCriterio1.start();
+//        hiloCriterio2.start();
+//        hiloCriterio3.start();
     }    
 }
