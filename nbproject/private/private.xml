@@ -5,8 +5,10 @@
         <group>
             <file>file:/C:/Users/danie/Documents/Vacunacion/src/proyectovacunacion/clases/Agenda.java</file>
             <file>file:/C:/Users/danie/Documents/Vacunacion/src/proyectovacunacion/clases/Criterio.java</file>
+            <file>file:/C:/Users/danie/Documents/Vacunacion/src/proyectovacunacion/lectoresEscritores/GeneradorDeVacunatorios.java</file>
+            <file>file:/C:/Users/danie/Documents/Vacunacion/src/proyectovacunacion/procesos/Agendar.java</file>
             <file>file:/C:/Users/danie/Documents/Vacunacion/src/proyectovacunacion/ProyectoVacunacion.java</file>
-            <file>file:/C:/Users/danie/Documents/Vacunacion/src/proyectovacunacion/clases/Persona.java</file>
+            <file>file:/C:/Users/danie/Documents/Vacunacion/src/proyectovacunacion/clases/Vacunatorio.java</file>
             <file>file:/C:/Users/danie/Documents/Vacunacion/src/proyectovacunacion/procesos/Seleccion.java</file>
             <file>file:/C:/Users/danie/Documents/Vacunacion/src/proyectovacunacion/procesos/Captura.java</file>
         </group>
