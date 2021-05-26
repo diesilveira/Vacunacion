@@ -11,7 +11,6 @@ import java.util.ArrayList;
 /**
  * Clase que permite leer y escribir archivos que contienen cadenas de 
  * caracteres.
- * @author Profesor Ocampo
  */
 public class ManejadorArchivosGenerico {
 

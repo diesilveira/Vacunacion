@@ -9,6 +9,7 @@ import java.util.Queue;
 import java.util.concurrent.Semaphore;
 import proyectovacunacion.clases.Criterio;
 import proyectovacunacion.clases.Persona;
+import proyectovacunacion.lectoresEscritores.Logger;
 
 /**
  *
@@ -21,6 +22,8 @@ public class Seleccion implements Runnable{
     private Semaphore s_actualizado;
     private Queue <Persona> colaRecepcion;
     private Queue <Criterio> colaCriterio;
+    private Logger logger;
+    private String[] log;
 
     public Seleccion(Semaphore s_recepcion, Semaphore c, Semaphore a, Queue<Persona> colaRecepcion, Queue<Criterio> colaCriterio) {
         this.s_recepcion = s_recepcion;
@@ -28,6 +31,9 @@ public class Seleccion implements Runnable{
         this.s_actualizado = a;
         this.colaRecepcion = colaRecepcion;
         this.colaCriterio = colaCriterio;
+        this.logger = new Logger();
+        this.log= new String[1];
+        
     }  
     
     @Override
@@ -46,7 +52,9 @@ public class Seleccion implements Runnable{
                             criterio.getMutex().acquire();
                             
                             criterio.agregarPersona(persona);
-                            System.out.println("Documento: " +persona.getCedula() + " insertado en cola de Prioridad: " + criterio.getGrupoPrioritario());                            
+                            log[0] = "["+ Thread.currentThread().getName() +"]"+"Documento: " +persona.getCedula() + " insertado en cola de Prioridad: " + criterio.getGrupoPrioritario();
+                            logger.escribirLog(log);
+                            //System.out.println("Documento: " +persona.getCedula() + " insertado en cola de Prioridad: " + criterio.getGrupoPrioritario());                            
                             
                             criterio.getMutex().release();
                             criterio.getActualizado().release();

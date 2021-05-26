@@ -9,6 +9,7 @@ import java.util.Queue;
 import proyectovacunacion.clases.Criterio;
 import proyectovacunacion.clases.Persona;
 import proyectovacunacion.clases.Vacunatorio;
+import proyectovacunacion.lectoresEscritores.Logger;
 
 /**
  *
@@ -18,10 +19,15 @@ public class Agendar implements Runnable{
         
     private Queue <Criterio> colaCriterio;
     private Queue <Vacunatorio> colaVacunacion;
+    private Logger logger;
+    private String[] log;
 
     public Agendar(Queue<Criterio> colaCriterio, Queue<Vacunatorio> colaVacunacion) {
         this.colaCriterio = colaCriterio;
         this.colaVacunacion = colaVacunacion;
+        this.logger = new Logger();
+        this.log= new String[1];
+        
     }
     
     
@@ -35,7 +41,10 @@ public class Agendar implements Runnable{
                             criterio.getMutex().acquire();
                             
                             Persona persona = criterio.getPersonasEnCriterio().remove();
-                            System.out.println("Documento: " +persona.getCedula() + " removida de la cola de Prioridad: " + criterio.getGrupoPrioritario());                            
+                            
+                            log[0] = "Documento: " +persona.getCedula() + " removida de la cola de Prioridad:  " + criterio.getGrupoPrioritario();
+                            logger.escribirLog(log);
+                            //System.out.println("Documento: " +persona.getCedula() + " removida de la cola de Prioridad: " + criterio.getGrupoPrioritario());                            
                             
                             criterio.getMutex().release();
                             criterio.getConsumido().release();

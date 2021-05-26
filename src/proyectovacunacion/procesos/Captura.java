@@ -9,6 +9,7 @@ import java.util.Queue;
 import java.util.concurrent.Semaphore;
 import proyectovacunacion.clases.Persona;
 import proyectovacunacion.lectoresEscritores.ManejadorArchivosGenerico;
+import proyectovacunacion.lectoresEscritores.Logger;
 
 /**
  *
@@ -20,7 +21,8 @@ public class Captura implements Runnable{
     private Semaphore s_consumido;
     private Semaphore s_actualizado;
     private Queue <Persona> colaRecepcion;
-    
+    private Logger logger;
+    private String[] log;
     
     public Captura (String rutaArchivo, Semaphore s, Semaphore c,Semaphore a, Queue<Persona> colaRecepcion){
         this.rutaArchivo = rutaArchivo;
@@ -28,6 +30,8 @@ public class Captura implements Runnable{
         this.s_consumido = c;
         this.s_actualizado = a;        
         this.colaRecepcion = colaRecepcion;
+        this.logger = new Logger();
+        this.log= new String[1];        
     }
     
     @Override
@@ -45,7 +49,9 @@ public class Captura implements Runnable{
                 s.acquire();
                 
                 colaRecepcion.add(persona);
-                System.out.println(persona.getCedula());
+                log[0] = "Nueva persona ingresada al sistema con el documento: " +persona.getCedula();
+                logger.escribirLog(log);
+                //System.out.println(persona.getCedula());
                 
                 s.release();
                 s_actualizado.release();
