@@ -89,7 +89,11 @@ public class Agendar implements Runnable{
                     }
                 }
                 
-            }catch(InterruptedException ex){            
+            }catch(InterruptedException ex){    
+                
+                
+                
+                
             }            
         }        
     }    
