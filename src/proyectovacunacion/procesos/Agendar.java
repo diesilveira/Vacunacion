@@ -39,14 +39,10 @@ public class Agendar implements Runnable{
             try{
                 Persona persona = null;
                 Criterio criterioSeleccionado = null;
-                boolean consigueVacunatorio = false;
-                boolean consigueVacuna = false;
-                boolean consigueAgenda = false;
                 for(Criterio criterio: colaCriterio){
                     if(!criterio.getPersonasEnCriterio().isEmpty()){
                         criterio.getActualizado().acquire();
                         criterio.getMutex().acquire();
-
                         persona = criterio.getPersonasEnCriterio().remove();
                         criterioSeleccionado = criterio;
                         logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Removido de la cola de Prioridad: " + criterio.getGrupoPrioritario());

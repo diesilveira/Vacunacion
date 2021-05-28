@@ -48,7 +48,7 @@ public class Captura implements Runnable{
                 
                 colaRecepcion.add(persona);
             
-                this.logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + "Nueva persona ingresada al sistema.");
+                this.logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Nueva persona ingresada al sistema.");
                 
                 s.release();
                 s_actualizado.release();
