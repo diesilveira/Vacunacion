@@ -40,3 +40,44 @@
 [FECHA: 26/05/2021 19:29:35] [HILO: Thread-7] EVENTO: Documento: 13456789 Removido de la cola de Prioridad: Comorbilidades
 [FECHA: 26/05/2021 19:29:35] [HILO: Thread-8] EVENTO: Documento: 23456789 Agendado en: MOU01
 [FECHA: 26/05/2021 19:29:35] [HILO: Thread-7] EVENTO: Documento: 13456789 Agendado en: MOU01
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-2] EVENTO: Documento: 32345678Nueva persona ingresada al sistema.
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-0] EVENTO: Documento: 12345678Nueva persona ingresada al sistema.
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-1] EVENTO: Documento: 22345678Nueva persona ingresada al sistema.
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-2] EVENTO: Documento: 33456789Nueva persona ingresada al sistema.
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-4] EVENTO: Documento: 12345678 Insertado en cola de Prioridad: Mayor80
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-0] EVENTO: Documento: 13456789Nueva persona ingresada al sistema.
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-3] EVENTO: Documento: 32345678 Insertado en cola de Prioridad: Mayor80
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-1] EVENTO: Documento: 23456789Nueva persona ingresada al sistema.
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-5] EVENTO: Documento: 22345678 Insertado en cola de Prioridad: Mayor80
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-6] EVENTO: Documento: 12345678 Removido de la cola de Prioridad: Mayor80
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-4] EVENTO: Documento: 33456789 Insertado en cola de Prioridad: Comorbilidades
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-2] EVENTO: Documento: 34578985Nueva persona ingresada al sistema.
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-6] EVENTO: Documento: 12345678 Agendado en: MOTC01
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-7] EVENTO: Documento: 32345678 Removido de la cola de Prioridad: Mayor80
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-0] EVENTO: Documento: 14578985Nueva persona ingresada al sistema.
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-3] EVENTO: Documento: 13456789 Insertado en cola de Prioridad: Comorbilidades
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-1] EVENTO: Documento: 24578985Nueva persona ingresada al sistema.
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-8] EVENTO: Documento: 22345678 Removido de la cola de Prioridad: Mayor80
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-7] EVENTO: Documento: 32345678 Agendado en: MOTC01
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-5] EVENTO: Documento: 23456789 Insertado en cola de Prioridad: Comorbilidades
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-8] EVENTO: Documento: 22345678 Agendado en: MOTC01
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-4] EVENTO: Documento: 34578985 Insertado en cola de Prioridad: PersonalDeSalud
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-1] EVENTO: Documento: 24578900Nueva persona ingresada al sistema.
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-7] EVENTO: Documento: 33456789 Removido de la cola de Prioridad: Comorbilidades
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-3] EVENTO: Documento: 14578985 Insertado en cola de Prioridad: PersonalDeSalud
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-1] EVENTO: Documento: 24578901Nueva persona ingresada al sistema.
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-7] EVENTO: Documento: 33456789 Agendado en: MOU01
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-8] EVENTO: Documento: 34578985 Removido de la cola de Prioridad: PersonalDeSalud
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-3] EVENTO: Documento: 24578901 No habilitado a vacunarse 
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-5] EVENTO: Documento: 24578985 Insertado en cola de Prioridad: PersonalDeSalud
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-8] EVENTO: Documento: 34578985 Agendado en: MOLB01
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-7] EVENTO: Documento: 14578985 Removido de la cola de Prioridad: PersonalDeSalud
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-7] EVENTO: Documento: 14578985 Agendado en: MOLB01
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-4] EVENTO: Documento: 24578900 Insertado en cola de Prioridad: PersonalDeSalud
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-8] EVENTO: Documento: 24578985 Removido de la cola de Prioridad: PersonalDeSalud
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-8] EVENTO: Documento: 24578985 Agendado en: MOLB01
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-7] EVENTO: Documento: 24578900 Removido de la cola de Prioridad: PersonalDeSalud
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-8] EVENTO: Documento: 13456789 Removido de la cola de Prioridad: Comorbilidades
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-8] EVENTO: Documento: 13456789 Agendado en: MOU01
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-7] EVENTO: Documento: 23456789 Removido de la cola de Prioridad: Comorbilidades
+[FECHA: 28/05/2021 19:25:16] [HILO: Thread-7] EVENTO: Documento: 23456789 Agendado en: MOU01
