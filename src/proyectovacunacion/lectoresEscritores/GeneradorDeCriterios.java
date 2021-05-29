@@ -10,6 +10,8 @@ import java.util.LinkedList;
 import java.util.concurrent.Semaphore;
 import proyectovacunacion.clases.Vacuna;
 import proyectovacunacion.clases.Criterio;
+import proyectovacunacion.clases.ComparadorDeCriterios;
+import proyectovacunacion.clases.CriteriosActivos;
 
 /**
  *
@@ -17,29 +19,44 @@ import proyectovacunacion.clases.Criterio;
  */
 public class GeneradorDeCriterios {    
        
-    private String rutaArchivo;
-    private Queue <Criterio> criteriosDeAgenda;
+    private String rutaArchivo;    
 
-    public GeneradorDeCriterios() {
-        this.criteriosDeAgenda = new LinkedList<>();        
+    public GeneradorDeCriterios() {        
     }
 
-    public Queue<Criterio> getCriteriosDeAgenda() {
-        return criteriosDeAgenda;
-    }    
+       
     //Cuando generamos los criterios asumimos que vienen ordenados.
-    public Queue <Criterio> generarCriterios (String rutaArchivo){
+    public Queue <Criterio> generarCriterios (CriteriosActivos criterios, String rutaArchivo) throws InterruptedException{
         String [] listaCriterios = ManejadorArchivosGenerico.leerArchivo
                                                       (rutaArchivo, false);
-            for(String lineaLeida : listaCriterios){                
-                String [] lineaAProcesar = lineaLeida.split("\\|");
-                Criterio criterio = new Criterio(Integer.parseInt(lineaAProcesar[0].trim()),
-                                        lineaAProcesar[1].trim(), new Vacuna (lineaAProcesar[2].trim()));
-                criterio.setMutex(new Semaphore(1, true));
-                criterio.setConsumido(new Semaphore(3, true));
-                criterio.setActualizado(new Semaphore(0, true));
-                criteriosDeAgenda.add(criterio);
+        
+        criterios.getMutex().acquire();
+        
+        for(String lineaLeida : listaCriterios){                
+            String [] lineaAProcesar = lineaLeida.split("\\|");
+            Criterio criterio = new Criterio(Integer.parseInt(lineaAProcesar[0].trim()),
+                                    lineaAProcesar[1].trim(), new Vacuna (lineaAProcesar[2].trim()));
+            criterio.setMutex(new Semaphore(1, true));
+            criterio.setConsumido(new Semaphore(3, true));
+            criterio.setActualizado(new Semaphore(0, true));
+            boolean  enCola = false;
+            for(Criterio criterioEnCola : criterios.getCriteriosDeAgenda()){
+                if(criterioEnCola.getGrupoPrioritario().equals(criterio.getGrupoPrioritario())){
+                    criterios.getCriteriosDeAgenda().remove(criterioEnCola);
+                    criterios.getCriteriosDeAgenda().add(criterio);
+                    enCola = true;
+                    break;
+                }                    
+            }
+            if (enCola == false){
+                criterios.getCriteriosDeAgenda().add(criterio);
+            }                
         }
-        return this.criteriosDeAgenda;
+        LinkedList<Criterio> listaAOrdenar = (LinkedList<Criterio>) criterios.getCriteriosDeAgenda();
+        listaAOrdenar.sort(new ComparadorDeCriterios());
+        criterios.setCriteriosDeAgenda(listaAOrdenar);
+        
+        criterios.getMutex().release();
+        return criterios.getCriteriosDeAgenda();
     }   
 }

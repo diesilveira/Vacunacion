@@ -13,24 +13,16 @@ import java.util.concurrent.Semaphore;
 import proyectovacunacion.clases.Agenda;
 import proyectovacunacion.clases.Vacuna;
 import proyectovacunacion.clases.Vacunatorio;
+import proyectovacunacion.clases.VacunatoriosActivos;
 
 /**
  *
  * @author danie
  */
 public class GeneradorDeVacunatorios {
-    private String rutaArchivo;
-    private Queue <Vacunatorio> vacunatoriosDisponibles;
-
-    public GeneradorDeVacunatorios() {
-        this.vacunatoriosDisponibles = new LinkedList<>();        
-    }
-
-    public Queue<Vacunatorio> getVacunatoriosDisponbles() {
-        return vacunatoriosDisponibles;
-    }      
+    private String rutaArchivo;        
     
-    public Queue <Vacunatorio> generarVacunatorios (String rutaArchivo){
+    public Queue <Vacunatorio> generarVacunatorios (VacunatoriosActivos vacunatorios, String rutaArchivo) throws InterruptedException{
         String [] listaVacunatorios = ManejadorArchivosGenerico.leerArchivo
                                                       (rutaArchivo, false);
             for(String lineaLeida : listaVacunatorios){                
@@ -47,14 +39,26 @@ public class GeneradorDeVacunatorios {
                 Agenda fecha3 = new Agenda (LocalDateTime.parse(lineaAProcesar[7].trim(), formatter));
                 fechasDisponibles.add(fecha1);
                 fechasDisponibles.add(fecha2);
-                fechasDisponibles.add(fecha3);                
-                
+                fechasDisponibles.add(fecha3);
                 Vacunatorio vacunatorio = new Vacunatorio(lineaAProcesar[0].trim(),
                                         vacunas, fechasDisponibles);
+                
+                
+                
+                
+                
+                
+                
+                
                 vacunatorio.setMutexVacunatorio(new Semaphore(1, true));
-                vacunatoriosDisponibles.add(vacunatorio);
+                
+                vacunatorios.getMutex().acquire();
+                
+                vacunatorios.getVacunatoriosActivos().add(vacunatorio);
+                
+                vacunatorios.getMutex().release();
             
         }
-        return this.vacunatoriosDisponibles;
+        return vacunatorios.getVacunatoriosActivos();
     }
 }

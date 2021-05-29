@@ -8,9 +8,11 @@ package proyectovacunacion.procesos;
 import java.util.Queue;
 import proyectovacunacion.clases.Agenda;
 import proyectovacunacion.clases.Criterio;
+import proyectovacunacion.clases.CriteriosActivos;
 import proyectovacunacion.clases.Persona;
 import proyectovacunacion.clases.Vacuna;
 import proyectovacunacion.clases.Vacunatorio;
+import proyectovacunacion.clases.VacunatoriosActivos;
 import proyectovacunacion.lectoresEscritores.Logger;
 
 /**
@@ -19,41 +21,46 @@ import proyectovacunacion.lectoresEscritores.Logger;
  */
 public class Agendar implements Runnable{
         
-    private final Queue <Criterio> colaCriterio;
-    private final Queue <Vacunatorio> colaVacunacion;
+    private final CriteriosActivos criterios;
+    private final VacunatoriosActivos vacunatorios;
     private final Logger logger;
 
-
-    public Agendar(Queue<Criterio> colaCriterio, Queue<Vacunatorio> colaVacunacion) {
-        this.colaCriterio = colaCriterio;
-        this.colaVacunacion = colaVacunacion;
-        this.logger = new Logger();
-     
-
-        
+    public Agendar(CriteriosActivos criterios, VacunatoriosActivos vacunatorios) {
+        this.criterios = criterios;
+        this.vacunatorios = vacunatorios;
+        this.logger = new Logger();        
     }
-    @Override
-   
+    
+    @Override   
     public void run() {
         while (true){
             try{
                 Persona persona = null;
                 Criterio criterioSeleccionado = null;
-                for(Criterio criterio: colaCriterio){
+
+                
+                criterios.getMutex().acquire();                
+                for(Criterio criterio: criterios.getCriteriosDeAgenda()){
+
                     if(!criterio.getPersonasEnCriterio().isEmpty()){
                         criterio.getActualizado().acquire();
                         criterio.getMutex().acquire();
                         persona = criterio.getPersonasEnCriterio().remove();
                         criterioSeleccionado = criterio;
                         logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Removido de la cola de Prioridad: " + criterio.getGrupoPrioritario());
+                        System.out.println("Documento: " + persona.getCedula() + " Removido de la cola de Prioridad: " + criterio.getGrupoPrioritario());
                         
                         criterio.getMutex().release();
                         criterio.getConsumido().release();
                         break;
                     }
-                }
+                }                
+                criterios.getMutex().release();               
+                
                 if(persona != null){
-                    for (Vacunatorio vacunatorio: colaVacunacion){
+                    
+                    vacunatorios.getMutex().acquire();
+                    for (Vacunatorio vacunatorio: vacunatorios.getVacunatoriosActivos()){
                         if(vacunatorio.getId().equals(persona.getVacunatorioSeleccionado())){
                             persona.tieneVacunatorio();
                              //Si tengo un vacunatorio no permito que nadie tome las vacunas o las fechas hasta que verifique 
@@ -68,7 +75,7 @@ public class Agendar implements Runnable{
                                              vacuna.setCantidad(vacuna.getCantidad()- 1);
                                              persona.tieneAgenda();
                                              logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId());
-                                             
+                                             System.out.println("Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId());
                                              break;
                                          }
                                      }                                     
@@ -78,6 +85,8 @@ public class Agendar implements Runnable{
                             break;
                         }
                     } 
+                    vacunatorios.getMutex().release();                   
+                    
                     if(persona.getVacunatorioDispo() ==false){
                         logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Vacunatorio seleccionado, no disponible");
                     }
@@ -87,13 +96,10 @@ public class Agendar implements Runnable{
                     if(persona.getVacunatorioDispo() ==true && persona.getVacunaDIspo() ==true && persona.getAgendaDIspo() ==false){
                         logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Agenda llena");
                     }
-                }
-                
-            }catch(InterruptedException ex){    
-                
-                
-                
-                
+
+                }                
+            }catch(InterruptedException ex){            
+
             }            
         }        
     }    
