@@ -91,14 +91,19 @@ public class Persona {
     }
 
     public boolean getVacunatorioDispo() {
-        return this.habilitado;
+        return this.vacunatorioDisponible;
     }
 
     public boolean getAgendaDIspo() {
-        return this.habilitado;
+        return this.asignadaAgenda;
     }
 
     public boolean getVacunaDIspo() {
-        return this.habilitado;
+        return this.asignadaVacuna;
+    }
+    public String datosPersona(){
+        String cadena = this.cedula+"|"+this.departamento+"|"+this.vacunatorioSeleccionado+"|"+this.movilidad+"|"+this.grupoPrioritario;
+        
+        return cadena;
     }
 }

@@ -1,0 +1,48 @@
+[FECHA: 30/05/2021 15:37:08] EVENTO: Nuevo criterio creado: PersonalDeSalud
+[FECHA: 30/05/2021 15:37:08] EVENTO: Criterio PersonalDeSalud ingresado al sistema
+[FECHA: 30/05/2021 15:37:08] EVENTO: Nuevo criterio creado: Comorbilidades
+[FECHA: 30/05/2021 15:37:08] EVENTO: Criterio Comorbilidades ingresado al sistema
+[FECHA: 30/05/2021 15:37:08] EVENTO: Nuevo criterio creado: Mayor80
+[FECHA: 30/05/2021 15:37:08] EVENTO: Criterio Mayor80 ingresado al sistema
+[FECHA: 30/05/2021 15:37:08] EVENTO: Nuevo vacunatorio creado: MOTC01
+[FECHA: 30/05/2021 15:37:08] EVENTO: Vacunatorio : MOTC01 Nuevo. Ingresado al sistema
+[FECHA: 30/05/2021 15:37:08] EVENTO: Nuevo vacunatorio creado: MOU01
+[FECHA: 30/05/2021 15:37:08] EVENTO: Vacunatorio : MOU01 Nuevo. Ingresado al sistema
+[FECHA: 30/05/2021 15:37:08] EVENTO: Nuevo vacunatorio creado: MOLB01
+[FECHA: 30/05/2021 15:37:08] EVENTO: Vacunatorio : MOLB01 Nuevo. Ingresado al sistema
+[FECHA: 30/05/2021 15:37:08] EVENTO: Nuevo criterio creado: PersonalDeSalud
+[FECHA: 30/05/2021 15:37:08] EVENTO: Criterio PersonalDeSalud reordenado
+[FECHA: 30/05/2021 15:37:08] EVENTO: Nuevo criterio creado: Comorbilidades
+[FECHA: 30/05/2021 15:37:08] EVENTO: Criterio Comorbilidades reordenado
+[FECHA: 30/05/2021 15:37:08] EVENTO: Nuevo criterio creado: Mayor80
+[FECHA: 30/05/2021 15:37:08] EVENTO: Criterio Mayor80 reordenado
+[FECHA: 30/05/2021 15:37:08] EVENTO: Nuevo vacunatorio creado: MOTC01
+[FECHA: 30/05/2021 15:37:08] EVENTO: Vacunatorio : MOTC01 ya ingresado en sistema. Agregando stock...
+[FECHA: 30/05/2021 15:37:08] EVENTO: Nuevo vacunatorio creado: MOU01
+[FECHA: 30/05/2021 15:37:08] EVENTO: Vacunatorio : MOU01 deshabilitado. Eliminado del sistema
+[FECHA: 30/05/2021 15:37:08] EVENTO: Nuevo vacunatorio creado: MOLB01
+[FECHA: 30/05/2021 15:37:08] EVENTO: Vacunatorio : MOLB01 ya ingresado en sistema. Agregando stock...
+[FECHA: 30/05/2021 15:43:20] EVENTO: Nuevo criterio creado: PersonalDeSalud
+[FECHA: 30/05/2021 15:43:20] EVENTO: Criterio PersonalDeSalud ingresado al sistema
+[FECHA: 30/05/2021 15:43:20] EVENTO: Nuevo criterio creado: Comorbilidades
+[FECHA: 30/05/2021 15:43:20] EVENTO: Criterio Comorbilidades ingresado al sistema
+[FECHA: 30/05/2021 15:43:20] EVENTO: Nuevo criterio creado: Mayor80
+[FECHA: 30/05/2021 15:43:20] EVENTO: Criterio Mayor80 ingresado al sistema
+[FECHA: 30/05/2021 15:43:20] EVENTO: Nuevo vacunatorio creado: MOTC01
+[FECHA: 30/05/2021 15:43:20] EVENTO: Vacunatorio : MOTC01 Nuevo. Ingresado al sistema
+[FECHA: 30/05/2021 15:43:20] EVENTO: Nuevo vacunatorio creado: MOU01
+[FECHA: 30/05/2021 15:43:20] EVENTO: Vacunatorio : MOU01 Nuevo. Ingresado al sistema
+[FECHA: 30/05/2021 15:43:20] EVENTO: Nuevo vacunatorio creado: MOLB01
+[FECHA: 30/05/2021 15:43:20] EVENTO: Vacunatorio : MOLB01 Nuevo. Ingresado al sistema
+[FECHA: 30/05/2021 15:43:20] EVENTO: Nuevo criterio creado: PersonalDeSalud
+[FECHA: 30/05/2021 15:43:20] EVENTO: Criterio PersonalDeSalud reordenado
+[FECHA: 30/05/2021 15:43:20] EVENTO: Nuevo criterio creado: Comorbilidades
+[FECHA: 30/05/2021 15:43:20] EVENTO: Criterio Comorbilidades reordenado
+[FECHA: 30/05/2021 15:43:20] EVENTO: Nuevo criterio creado: Mayor80
+[FECHA: 30/05/2021 15:43:20] EVENTO: Criterio Mayor80 reordenado
+[FECHA: 30/05/2021 15:43:20] EVENTO: Nuevo vacunatorio creado: MOTC01
+[FECHA: 30/05/2021 15:43:20] EVENTO: Vacunatorio : MOTC01 ya ingresado en sistema. Agregando stock...
+[FECHA: 30/05/2021 15:43:20] EVENTO: Nuevo vacunatorio creado: MOU01
+[FECHA: 30/05/2021 15:43:20] EVENTO: Vacunatorio : MOU01 deshabilitado. Eliminado del sistema
+[FECHA: 30/05/2021 15:43:20] EVENTO: Nuevo vacunatorio creado: MOLB01
+[FECHA: 30/05/2021 15:43:20] EVENTO: Vacunatorio : MOLB01 ya ingresado en sistema. Agregando stock...

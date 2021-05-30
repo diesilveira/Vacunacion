@@ -67,11 +67,11 @@ public class ProyectoVacunacion {
         Agendar agenda3 = new Agendar(criteriosActivos, vacunatoriosActivos);
         Thread hiloAgenda3 = new Thread(agenda3);
 
-        Captura clienteWeb = new Captura("src/proyectovacunacion/archivos/SolicitudesWeb.csv", s_recepcion, s_consumido, s_actualizado, recepcion);
+        Captura clienteWeb = new Captura("src/proyectovacunacion/archivos/personasWeb.txt", s_recepcion, s_consumido, s_actualizado, recepcion);
         Thread hiloRecepcion1 = new Thread(clienteWeb);
-        Captura clienteApp = new Captura("src/proyectovacunacion/archivos/SolicitudesApp.csv", s_recepcion, s_consumido, s_actualizado, recepcion);
+        Captura clienteApp = new Captura("src/proyectovacunacion/archivos/personasApp.txt", s_recepcion, s_consumido, s_actualizado, recepcion);
         Thread hiloRecepcion2 = new Thread(clienteApp);
-        Captura clienteLinea = new Captura("src/proyectovacunacion/archivos/SolicitudesLinea.csv", s_recepcion, s_consumido, s_actualizado, recepcion);
+        Captura clienteLinea = new Captura("src/proyectovacunacion/archivos/personasLinea.txt", s_recepcion, s_consumido, s_actualizado, recepcion);
         Thread hiloRecepcion3 = new Thread(clienteLinea);
 
         hiloRecepcion1.start();
@@ -84,11 +84,11 @@ public class ProyectoVacunacion {
         hiloAgenda2.start();
         hiloAgenda3.start();
 
-//        try {
-//            criteriosActivos.setCriteriosDeAgenda(criterioAgenda.generarCriterios(criteriosActivos, "src/proyectovacunacion/archivos/CriteriosDeAgenda_2.csv"));
-//        } catch (InterruptedException ex) {
-//            Logger.getLogger(ProyectoVacunacion.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            criteriosActivos.setCriteriosDeAgenda(criterioAgenda.generarCriterios(criteriosActivos, "src/proyectovacunacion/archivos/CriteriosDeAgenda_2.csv"));
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ProyectoVacunacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             vacunatoriosActivos.setVacunatoriosActivos(generadorVacunatorios.generarVacunatorios(vacunatoriosActivos, "src/proyectovacunacion/archivos/Vacunatorios_2.csv"));
         } catch (InterruptedException ex) {

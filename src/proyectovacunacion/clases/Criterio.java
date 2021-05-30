@@ -23,7 +23,7 @@ public class Criterio{
     private Semaphore actualizado; 
     private Vacuna tipoVacuna;
     private Queue<Persona> personasEnCriterio;
-    private Logger logger;
+    private final Logger logger;
 
     public Criterio(int prioridad, String grupoPrioritario, Vacuna tipoVacuna) {
         this.prioridad = prioridad;

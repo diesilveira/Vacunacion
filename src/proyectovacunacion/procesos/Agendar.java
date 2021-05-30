@@ -5,7 +5,6 @@
  */
 package proyectovacunacion.procesos;
 
-import java.util.Queue;
 import proyectovacunacion.clases.Agenda;
 import proyectovacunacion.clases.Criterio;
 import proyectovacunacion.clases.CriteriosActivos;
@@ -13,6 +12,7 @@ import proyectovacunacion.clases.Persona;
 import proyectovacunacion.clases.Vacuna;
 import proyectovacunacion.clases.Vacunatorio;
 import proyectovacunacion.clases.VacunatoriosActivos;
+import proyectovacunacion.lectoresEscritores.EscritorPersonasEspera;
 import proyectovacunacion.lectoresEscritores.Logger;
 
 /**
@@ -24,11 +24,13 @@ public class Agendar implements Runnable{
     private final CriteriosActivos criterios;
     private final VacunatoriosActivos vacunatorios;
     private final Logger logger;
+    private final EscritorPersonasEspera espera;
 
     public Agendar(CriteriosActivos criterios, VacunatoriosActivos vacunatorios) {
         this.criterios = criterios;
         this.vacunatorios = vacunatorios;
-        this.logger = new Logger();        
+        this.logger = new Logger();    
+        this.espera = new EscritorPersonasEspera();
     }
     
     @Override   
@@ -47,7 +49,7 @@ public class Agendar implements Runnable{
                         persona = criterio.getPersonasEnCriterio().remove();
                         criterioSeleccionado = criterio;
                         logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Removido de la cola de Prioridad: " + criterio.getGrupoPrioritario());
-                        System.out.println("Documento: " + persona.getCedula() + " Removido de la cola de Prioridad: " + criterio.getGrupoPrioritario());
+                        //System.out.println("Documento: " + persona.getCedula() + " Removido de la cola de Prioridad: " + criterio.getGrupoPrioritario());
                         
                         criterio.getMutex().release();
                         criterio.getConsumido().release();
@@ -74,7 +76,7 @@ public class Agendar implements Runnable{
                                              vacuna.setCantidad(vacuna.getCantidad()- 1);
                                              persona.tieneAgenda();
                                              logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId());
-                                             System.out.println("Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId());
+                                             //System.out.println("Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId());
                                              break;
                                          }
                                      }                                     
@@ -88,12 +90,15 @@ public class Agendar implements Runnable{
                     
                     if(persona.getVacunatorioDispo() ==false){
                         logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Vacunatorio seleccionado, no disponible");
+                        espera.escribirLog(persona);
                     }
                     if(persona.getVacunatorioDispo() ==true && persona.getVacunaDIspo() ==false){
                         logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Sin vacunas disponibles");
+                        espera.escribirLog(persona);
                     }
                     if(persona.getVacunatorioDispo() ==true && persona.getVacunaDIspo() ==true && persona.getAgendaDIspo() ==false){
                         logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Agenda llena");
+                        espera.escribirLog(persona);
                     }
                 }                
             }catch(InterruptedException ex){            

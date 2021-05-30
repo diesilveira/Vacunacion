@@ -8,7 +8,6 @@ package proyectovacunacion.clases;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.Semaphore;
-import proyectovacunacion.lectoresEscritores.Logger;
 
 /**
  *
@@ -18,12 +17,10 @@ public class VacunatoriosActivos {
     
     private Semaphore mutex;
     private Queue <Vacunatorio> vacunatoriosActivos;
-    private Logger logger;
 
     public VacunatoriosActivos() {
         this.mutex = new Semaphore(1, true);
         this.vacunatoriosActivos = new LinkedList();
-        this.logger = new Logger();
     }
 
     public Semaphore getMutex() {
@@ -42,11 +39,4 @@ public class VacunatoriosActivos {
         this.vacunatoriosActivos = vacunatoriosActivos;
     }
 
-    public Logger getLogger() {
-        return logger;
-    }
-
-    public void setLogger(Logger logger) {
-        this.logger = logger;
-    }   
 }

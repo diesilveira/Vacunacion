@@ -9,6 +9,7 @@ import java.util.Queue;
 import java.util.concurrent.Semaphore;
 import proyectovacunacion.clases.Criterio;
 import proyectovacunacion.clases.Persona;
+import proyectovacunacion.lectoresEscritores.EscritorPersonasEspera;
 import proyectovacunacion.lectoresEscritores.Logger;
 
 /**
@@ -23,6 +24,7 @@ public class Seleccion implements Runnable{
     private final Queue <Persona> colaRecepcion;
     private final Queue <Criterio> colaCriterio;
     private final Logger logger;
+    private final EscritorPersonasEspera espera;
 
     public Seleccion(Semaphore s_recepcion, Semaphore c, Semaphore a, Queue<Persona> colaRecepcion, Queue<Criterio> colaCriterio) {
         this.s_recepcion = s_recepcion;
@@ -31,6 +33,7 @@ public class Seleccion implements Runnable{
         this.colaRecepcion = colaRecepcion;
         this.colaCriterio = colaCriterio;
         this.logger = new Logger();
+        this.espera = new EscritorPersonasEspera();
         
     }  
     
@@ -60,6 +63,7 @@ public class Seleccion implements Runnable{
                     }
                      if(persona.getHabilitado()== false){
                               this.logger.escribirLog( Thread.currentThread().getName(),"Documento: " +persona.getCedula() + " No habilitado a vacunarse ");
+                              this.espera.escribirLog(persona);
                         }
                 
                      

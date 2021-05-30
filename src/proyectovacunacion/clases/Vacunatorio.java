@@ -14,7 +14,7 @@ import java.util.concurrent.Semaphore;
  */
 public class Vacunatorio {
 
-    private String id;
+    private final String id;
     /*identificacion segun departamento barrio y numero
                         Ejemplo MOTC01 -> Montevideo Tres Cruces Vacunatorio 1
                         (puede haber varios por barrio)

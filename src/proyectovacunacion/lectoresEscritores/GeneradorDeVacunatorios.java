@@ -20,6 +20,12 @@ import proyectovacunacion.clases.VacunatoriosActivos;
  * @author danie
  */
 public class GeneradorDeVacunatorios {
+    LoggerSistema logSistema;
+
+    public GeneradorDeVacunatorios() {
+        logSistema = new LoggerSistema();
+    }
+    
 
     public Queue<Vacunatorio> generarVacunatorios(VacunatoriosActivos vacunatoriosActivos, String rutaArchivo) throws InterruptedException {
         String[] listaVacunatorios = ManejadorArchivosGenerico.leerArchivo(rutaArchivo, false);
@@ -47,6 +53,7 @@ public class GeneradorDeVacunatorios {
             
             Vacunatorio vacunatorioNuevo = new Vacunatorio(lineaAProcesar[0].trim(),
                     vacunas, fechasDisponibles, lineaAProcesar[8]);
+            logSistema.escribirLog("Nuevo vacunatorio creado: "+lineaAProcesar[0].trim());
 
             vacunatorioNuevo.setMutex(new Semaphore(1, true));
             vacunatorioNuevo.setConsumido(new Semaphore(3, true));
@@ -57,26 +64,25 @@ public class GeneradorDeVacunatorios {
             for (Vacunatorio vacunatorioEnCola : vacunatoriosActivos.getVacunatoriosActivos()) {
                 //compruebo si vacunatorio ya esta en la cola
                 if (vacunatorioNuevo.getId().equals(vacunatorioEnCola.getId())) {
-
                     //compruebo si el vac. esta habilitado en el nuevo ingreso
                     if (vacunatorioNuevo.getHabilitado().equals("true")) {
                         //agrego las vacunas
                         vacunatorioEnCola.agregarStock(stockPfizzer, stockSinovac);
+                        logSistema.escribirLog("Vacunatorio : "+lineaAProcesar[0].trim()+" ya ingresado en sistema. Agregando stock...");
                     } else {
                         //si no esta habilitado lo saco de la cola
                         vacunatoriosActivos.getVacunatoriosActivos().remove(vacunatorioEnCola);
+                        logSistema.escribirLog("Vacunatorio : "+lineaAProcesar[0].trim()+" deshabilitado. Eliminado del sistema");
                     }
                     enCola = true;
                     break;
-
                 }
-
-
             }
             //si no esta en la cola lo agrego
             if (enCola == false) {
 
                 vacunatoriosActivos.getVacunatoriosActivos().add(vacunatorioNuevo);
+                logSistema.escribirLog("Vacunatorio : "+lineaAProcesar[0].trim()+" Nuevo. Ingresado al sistema");
                 
             }
 

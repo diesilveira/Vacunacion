@@ -1,0 +1,4 @@
+24578901|Montevideo|MOLBO1|false|Militar
+24578901|Montevideo|MOLBO1|false|Militar
+24578900|Montevideo|MOLBO5|false|PersonalDeSalud
+13456789|Montevideo|MOU01|false|Comorbilidades
