@@ -10,7 +10,5 @@ package proyectovacunacion.procesos;
  * @author danie
  */
 public class Inicializar {
-    
-    
-   
+
 }

@@ -12,7 +12,8 @@ import java.util.Queue;
  *
  * @author dsilv
  */
-public class Agenda  {
+public class Agenda {
+
     private LocalDateTime fechasDisponible;
     private boolean asignada;
     private Persona personaAsignada;
@@ -25,7 +26,7 @@ public class Agenda  {
     public boolean isAsignada() {
         return asignada;
     }
-    
+
     public void setAsignada(boolean asignada) {
         this.asignada = asignada;
     }

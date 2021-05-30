@@ -15,9 +15,9 @@ import proyectovacunacion.lectoresEscritores.Logger;
  * @author danie
  */
 public class CriteriosActivos {
-    
+
     private Semaphore mutex;
-    private Queue <Criterio> criteriosDeAgenda;
+    private Queue<Criterio> criteriosDeAgenda;
     private Logger logger;
 
     public CriteriosActivos() {
@@ -32,7 +32,7 @@ public class CriteriosActivos {
 
     public void setMutex(Semaphore mutex) {
         this.mutex = mutex;
-    }    
+    }
 
     public Queue<Criterio> getCriteriosDeAgenda() {
         return criteriosDeAgenda;
@@ -48,5 +48,5 @@ public class CriteriosActivos {
 
     public void setLogger(Logger logger) {
         this.logger = logger;
-    }   
+    }
 }

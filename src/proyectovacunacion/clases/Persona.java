@@ -21,6 +21,24 @@ public class Persona {
     private boolean asignadaAgenda;
     private int edad;
     private boolean movilidad;
+    private long nanoSecInicializado;
+    private long nanoSecAgendado;
+
+    public void setNanoSecAgendado(long nanoSecAgendado) {
+        this.nanoSecAgendado = nanoSecAgendado;
+    }
+
+    public long getNanoSecAgendado() {
+        return nanoSecAgendado;
+    }
+
+    public long getNanoSecInicializado() {
+        return nanoSecInicializado;
+    }
+
+    public void setNanoSecInicializado(long nanoSecInicializado) {
+        this.nanoSecInicializado = nanoSecInicializado;
+    }
 
     public Persona(String ced, String depto, String vs, boolean mov, String grupoPrioritario) {
         this.cedula = ced;

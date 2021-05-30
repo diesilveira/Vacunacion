@@ -20,15 +20,15 @@ public class Vacunatorio {
                         (puede haber varios por barrio)
                         Las 2 primeras letras depto. las otras dos barrio,
                         los dos nuemros el numero de vacunatorio en ese barrio
-     */    
+     */
     private Queue<Vacuna> vacunasDisponibles;
     private Queue<Agenda> fechasDisponibles;
     private Queue<Persona> agendasFuturas;//Guarda a aquellas personas que no se pudieron agendar
     private final String habilitado;
-    
+
     private Semaphore mutex;
     private Semaphore consumido;
-    private Semaphore actualizado; 
+    private Semaphore actualizado;
 
     public Vacunatorio(String id, Queue<Vacuna> vacunasDisponibles, Queue<Agenda> fechasDisponibles, String habilitado) {
         this.id = id;
@@ -36,26 +36,28 @@ public class Vacunatorio {
         this.fechasDisponibles = fechasDisponibles;
         this.habilitado = habilitado;
     }
+
     //metodo encargado de incrementar el stock de las vacunas.
-    public void agregarStock(int VacPfizzer, int VacSinovac){
+    public void agregarStock(int VacPfizzer, int VacSinovac) {
         for (Vacuna vacuna : vacunasDisponibles) {
-            if(vacuna.getTipo().equals("Pfizzer")){
+            if (vacuna.getTipo().equals("Pfizzer")) {
                 vacuna.setAgregarCantidad(VacPfizzer);
             }
-            if(vacuna.getTipo().equals("Sinovac")){
+            if (vacuna.getTipo().equals("Sinovac")) {
                 vacuna.setAgregarCantidad(VacSinovac);
             }
-            
+
         }
     }
 
     public String getId() {
         return id;
-    }   
+    }
 
-        public String getHabilitado() {
+    public String getHabilitado() {
         return habilitado;
-    } 
+    }
+
     public Queue<Vacuna> getVacunasDisponibles() {
         return vacunasDisponibles;
     }
@@ -70,7 +72,7 @@ public class Vacunatorio {
 
     public void setFechasDisponibles(Queue<Agenda> fechasDisponibles) {
         this.fechasDisponibles = fechasDisponibles;
-    }    
+    }
 
     public Queue<Persona> getAgendasFuturas() {
         return agendasFuturas;
@@ -80,8 +82,7 @@ public class Vacunatorio {
         this.agendasFuturas = agendasFuturas;
     }
 
-   
-     public Semaphore getMutex() {
+    public Semaphore getMutex() {
         return mutex;
     }
 

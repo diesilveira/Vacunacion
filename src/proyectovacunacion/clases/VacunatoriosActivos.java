@@ -15,9 +15,9 @@ import proyectovacunacion.lectoresEscritores.Logger;
  * @author danie
  */
 public class VacunatoriosActivos {
-    
+
     private Semaphore mutex;
-    private Queue <Vacunatorio> vacunatoriosActivos;
+    private Queue<Vacunatorio> vacunatoriosActivos;
     private Logger logger;
 
     public VacunatoriosActivos() {
@@ -48,5 +48,5 @@ public class VacunatoriosActivos {
 
     public void setLogger(Logger logger) {
         this.logger = logger;
-    }   
+    }
 }
