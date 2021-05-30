@@ -63,7 +63,7 @@ public class Agendar implements Runnable{
                         if(vacunatorio.getId().equals(persona.getVacunatorioSeleccionado())){
                             persona.tieneVacunatorio();
                              //Si tengo un vacunatorio no permito que nadie tome las vacunas o las fechas hasta que verifique 
-                             vacunatorio.getMutexVacunatorio().acquire();                             
+                             vacunatorio.getMutex().acquire();                             
                              for(Vacuna vacuna : vacunatorio.getVacunasDisponibles())
                                  if(vacuna.getTipo().equals(criterioSeleccionado.getTipoVacuna().getTipo()) && vacuna.getCantidad()>0){                                  
                                      persona.tieneVacuna();
@@ -80,7 +80,7 @@ public class Agendar implements Runnable{
                                      }                                     
                                     break;
                                  }
-                             vacunatorio.getMutexVacunatorio().release();
+                             vacunatorio.getMutex().release();
                             break;
                         }
                     } 

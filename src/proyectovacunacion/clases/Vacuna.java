@@ -36,5 +36,10 @@ public class Vacuna {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
-    }    
+    }
+    
+    //metodo que suma mas cantidad de vacunas a las existentes
+    public void setAgregarCantidad(int cantidadNueva) {
+        this.cantidad = this.cantidad + cantidadNueva;
+    }      
 }

@@ -22,20 +22,40 @@ public class Vacunatorio {
                         los dos nuemros el numero de vacunatorio en ese barrio
      */    
     private Queue<Vacuna> vacunasDisponibles;
-    private Semaphore mutexVacunatorio;
     private Queue<Agenda> fechasDisponibles;
     private Queue<Persona> agendasFuturas;//Guarda a aquellas personas que no se pudieron agendar
+    private final String habilitado;
+    
+    private Semaphore mutex;
+    private Semaphore consumido;
+    private Semaphore actualizado; 
 
-    public Vacunatorio(String id, Queue<Vacuna> vacunasDisponibles, Queue<Agenda> fechasDisponibles) {
+    public Vacunatorio(String id, Queue<Vacuna> vacunasDisponibles, Queue<Agenda> fechasDisponibles, String habilitado) {
         this.id = id;
         this.vacunasDisponibles = vacunasDisponibles;
         this.fechasDisponibles = fechasDisponibles;
+        this.habilitado = habilitado;
+    }
+    //metodo encargado de incrementar el stock de las vacunas.
+    public void agregarStock(int VacPfizzer, int VacSinovac){
+        for (Vacuna vacuna : vacunasDisponibles) {
+            if(vacuna.getTipo().equals("Pfizzer")){
+                vacuna.setAgregarCantidad(VacPfizzer);
+            }
+            if(vacuna.getTipo().equals("Sinovac")){
+                vacuna.setAgregarCantidad(VacSinovac);
+            }
+            
+        }
     }
 
     public String getId() {
         return id;
     }   
 
+        public String getHabilitado() {
+        return habilitado;
+    } 
     public Queue<Vacuna> getVacunasDisponibles() {
         return vacunasDisponibles;
     }
@@ -60,11 +80,28 @@ public class Vacunatorio {
         this.agendasFuturas = agendasFuturas;
     }
 
-    public Semaphore getMutexVacunatorio() {
-        return mutexVacunatorio;
+   
+     public Semaphore getMutex() {
+        return mutex;
     }
 
-    public void setMutexVacunatorio(Semaphore mutexVacunatorio) {
-        this.mutexVacunatorio = mutexVacunatorio;
-    }       
+    public Semaphore getConsumido() {
+        return consumido;
+    }
+
+    public Semaphore getActualizado() {
+        return actualizado;
+    }
+
+    public void setMutex(Semaphore mutex) {
+        this.mutex = mutex;
+    }
+
+    public void setConsumido(Semaphore consumido) {
+        this.consumido = consumido;
+    }
+
+    public void setActualizado(Semaphore actualizado) {
+        this.actualizado = actualizado;
+    }
 }
