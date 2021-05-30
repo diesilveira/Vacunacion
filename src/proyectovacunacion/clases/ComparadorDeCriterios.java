@@ -11,9 +11,10 @@ import java.util.Comparator;
  *
  * @author danie
  */
-public class ComparadorDeCriterios implements Comparator<Criterio>{       
+public class ComparadorDeCriterios implements Comparator<Criterio> {
+
     @Override
-    public int compare (Criterio criterio1, Criterio criterio2){
+    public int compare(Criterio criterio1, Criterio criterio2) {
         return criterio1.getPrioridad() - criterio2.getPrioridad();
     }
 }

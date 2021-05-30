@@ -16,13 +16,13 @@ import proyectovacunacion.lectoresEscritores.Logger;
  *
  * @author danie
  */
-public class Seleccion implements Runnable{   
-        
+public class Seleccion implements Runnable {
+
     private final Semaphore s_consumido;
     private final Semaphore s_recepcion;
     private final Semaphore s_actualizado;
-    private final Queue <Persona> colaRecepcion;
-    private final Queue <Criterio> colaCriterio;
+    private final Queue<Persona> colaRecepcion;
+    private final Queue<Criterio> colaCriterio;
     private final Logger logger;
     private final EscritorPersonasEspera espera;
 
@@ -33,42 +33,42 @@ public class Seleccion implements Runnable{
         this.colaRecepcion = colaRecepcion;
         this.colaCriterio = colaCriterio;
         this.logger = new Logger();
+
         this.espera = new EscritorPersonasEspera();
-        
-    }  
-    
+
+    }
+
     @Override
     public void run() {
-        while(true){
-            try{
+        while (true) {
+            try {
 
-                    s_actualizado.acquire();
-                    s_recepcion.acquire();
-                    Persona persona = colaRecepcion.remove(); 
-                    s_recepcion.release();
-                    s_consumido.release();
-                    
-                    for(Criterio criterio: colaCriterio){
-                        if(persona.getGrupoPrioritario().equals(criterio.getGrupoPrioritario())){
-                            criterio.getConsumido().acquire();
-                            criterio.getMutex().acquire();
-                            criterio.agregarPersona(persona);  
-                            persona.habilitado();
-                            this.logger.escribirLog( Thread.currentThread().getName(),"Documento: " +persona.getCedula() + " Insertado en cola de Prioridad: " + criterio.getGrupoPrioritario());
-                            criterio.getMutex().release();
-                            criterio.getActualizado().release();
-                        }
-                       
-                       
+                s_actualizado.acquire();
+                s_recepcion.acquire();
+                Persona persona = colaRecepcion.remove();
+                s_recepcion.release();
+                s_consumido.release();
+
+                for (Criterio criterio : colaCriterio) {
+                    if (persona.getGrupoPrioritario().equals(criterio.getGrupoPrioritario())) {
+                        criterio.getConsumido().acquire();
+                        criterio.getMutex().acquire();
+                        criterio.agregarPersona(persona);
+                        persona.habilitado();
+                        this.logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Insertado en cola de Prioridad: " + criterio.getGrupoPrioritario());
+                        criterio.getMutex().release();
+                        criterio.getActualizado().release();
                     }
-                     if(persona.getHabilitado()== false){
-                              this.logger.escribirLog( Thread.currentThread().getName(),"Documento: " +persona.getCedula() + " No habilitado a vacunarse ");
-                              this.espera.escribirLog(persona);
-                        }
-                
-                     
-            }catch(InterruptedException ex){            
-            } 
-        }        
-    }    
+                    if (persona.getHabilitado() == false) {
+                        this.logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " No habilitado a vacunarse ");
+                        this.espera.escribirLog(persona);
+                    }
+                }
+
+            } catch (InterruptedException ex) {
+
+            }
+        }
+
+    }
 }

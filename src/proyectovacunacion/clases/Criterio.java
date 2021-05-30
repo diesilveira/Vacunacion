@@ -14,13 +14,13 @@ import proyectovacunacion.lectoresEscritores.Logger;
  *
  * @author dsilv
  */
-public class Criterio{    
-    
+public class Criterio {
+
     private int prioridad;
     private String grupoPrioritario;
     private Semaphore mutex;
     private Semaphore consumido;
-    private Semaphore actualizado; 
+    private Semaphore actualizado;
     private Vacuna tipoVacuna;
     private Queue<Persona> personasEnCriterio;
     private final Logger logger;
@@ -31,7 +31,7 @@ public class Criterio{
         this.tipoVacuna = tipoVacuna;
         this.personasEnCriterio = new LinkedList();
         this.logger = new Logger();
-    }   
+    }
 
     public int getPrioridad() {
         return prioridad;
@@ -87,7 +87,7 @@ public class Criterio{
 
     public void setActualizado(Semaphore actualizado) {
         this.actualizado = actualizado;
-    }    
+    }
 
     public boolean agregarPersona(Persona p) {
 
@@ -98,7 +98,7 @@ public class Criterio{
         } catch (Exception ex) {
             this.logger.escribirLog("Criterio", "Error " + ex.getMessage() + " al cargar  "
                     + p.getCedula() + " al criterio " + this.grupoPrioritario);
-           
+
             return false;
         }
 
@@ -110,7 +110,7 @@ public class Criterio{
             personasEnCriterio.remove(p);
             return true;
         } catch (Exception ex) {
-           this.logger.escribirLog("Criterio", "Error " + ex.getMessage() + " al borrar  "
+            this.logger.escribirLog("Criterio", "Error " + ex.getMessage() + " al borrar  "
                     + p.getCedula() + " del criterio" + this.grupoPrioritario);
             return false;
         }
