@@ -6,7 +6,6 @@
 package proyectovacunacion.clases;
 
 import java.time.LocalDateTime;
-import java.util.Queue;
 
 /**
  *

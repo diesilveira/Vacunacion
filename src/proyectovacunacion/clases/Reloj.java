@@ -29,10 +29,7 @@ public class Reloj {
 
     public int getContador() {
         return contador;
-    }
-    
-    
-    
+    }  
     
     public Reloj(){
         this.contador = 0;

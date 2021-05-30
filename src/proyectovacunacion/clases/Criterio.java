@@ -24,6 +24,8 @@ public class Criterio {
     private Vacuna tipoVacuna;
     private Queue<Persona> personasEnCriterio;
     private final Logger logger;
+    private long nanoSecInicializado;
+    private long nanoSecModificado;
 
     public Criterio(int prioridad, String grupoPrioritario, Vacuna tipoVacuna) {
         this.prioridad = prioridad;
@@ -115,5 +117,21 @@ public class Criterio {
             return false;
         }
 
+    }
+        
+    public void setNanoSecModificado(long nanoSecModificado) {
+        this.nanoSecModificado = nanoSecModificado;
+    }
+
+    public long getNanoSecModificado() {
+        return nanoSecModificado;
+    }
+
+    public long getNanoSecInicializado() {
+        return nanoSecInicializado;
+    }
+
+    public void setNanoSecInicializado(long nanoSecInicializado) {
+        this.nanoSecInicializado = nanoSecInicializado;
     }
 }

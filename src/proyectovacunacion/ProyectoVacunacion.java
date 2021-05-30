@@ -19,6 +19,7 @@ import proyectovacunacion.procesos.Seleccion;
 import proyectovacunacion.procesos.Captura;
 import proyectovacunacion.lectoresEscritores.GeneradorDeCriterios;
 import proyectovacunacion.lectoresEscritores.GeneradorDeVacunatorios;
+import proyectovacunacion.lectoresEscritores.LoggerSistema;
 import proyectovacunacion.procesos.Agendar;
 
 /**
@@ -31,6 +32,8 @@ public class ProyectoVacunacion {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InterruptedException {
+        LoggerSistema loggerSistema = new LoggerSistema();
+        
         //Se simula la recepción de solicitudes de diferentes clientes.
         Queue<Persona> recepcion = new LinkedList<>();
         Semaphore s_recepcion = new Semaphore(1, true);
@@ -40,7 +43,7 @@ public class ProyectoVacunacion {
         Reloj promedioDeAgenda = new Reloj();
         //La Agenda se abre para determinados grupos prioritarios (Criterios).
         CriteriosActivos criteriosActivos = new CriteriosActivos();
-        GeneradorDeCriterios criterioAgenda = new GeneradorDeCriterios();
+        GeneradorDeCriterios criterioAgenda = new GeneradorDeCriterios(promedioDeAgenda);
         try {
             criteriosActivos.setCriteriosDeAgenda(criterioAgenda.generarCriterios(criteriosActivos, "src/proyectovacunacion/archivos/CriteriosDeAgenda.csv"));
         } catch (InterruptedException ex) {
@@ -56,7 +59,7 @@ public class ProyectoVacunacion {
 
         //Se abren los vacunatoris disponibles
         VacunatoriosActivos vacunatoriosActivos = new VacunatoriosActivos();
-        GeneradorDeVacunatorios generadorVacunatorios = new GeneradorDeVacunatorios();
+        GeneradorDeVacunatorios generadorVacunatorios = new GeneradorDeVacunatorios(promedioDeAgenda);
         try {
             vacunatoriosActivos.setVacunatoriosActivos(generadorVacunatorios.generarVacunatorios(vacunatoriosActivos, "src/proyectovacunacion/archivos/Vacunatorios.csv"));
         } catch (InterruptedException ex) {
@@ -101,5 +104,7 @@ public class ProyectoVacunacion {
         
         sleep(15000);
         System.out.println("Tiempo promedio de agenda de personas: " + String.valueOf(promedioDeAgenda.obtenerPromedioFinal()/1000000));
+        loggerSistema.escribirLog("Tiempo promedio de agenda de personas: " + String.valueOf(promedioDeAgenda.obtenerPromedioFinal()/1000000));
+        
     }
 }

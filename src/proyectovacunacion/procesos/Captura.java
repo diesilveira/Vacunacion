@@ -11,7 +11,6 @@ import proyectovacunacion.clases.Persona;
 import proyectovacunacion.lectoresEscritores.ManejadorArchivosGenerico;
 import proyectovacunacion.lectoresEscritores.Logger;
 import java.time.LocalTime;
-import proyectovacunacion.clases.Reloj;
 
 /**
  *

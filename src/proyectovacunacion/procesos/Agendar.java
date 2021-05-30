@@ -52,10 +52,6 @@ public class Agendar implements Runnable {
 
                         persona = criterio.getPersonasEnCriterio().remove();
                         criterioSeleccionado = criterio;
-                        logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Removido de la cola de Prioridad: " + criterio.getGrupoPrioritario());
-                        //System.out.println("Documento: " + persona.getCedula() + " Removido de la cola de Prioridad: " + criterio.getGrupoPrioritario());
-                        
-
                         criterio.getMutex().release();
                         criterio.getConsumido().release();
                         break;
@@ -80,13 +76,12 @@ public class Agendar implements Runnable {
                                             agenda.setPersonaAsignada(persona);
                                             vacuna.setCantidad(vacuna.getCantidad() - 1);
                                             persona.tieneAgenda();
+                                            
                                             LocalTime time = LocalTime.now();
-                                            
                                             persona.setNanoSecAgendado(time.toNanoOfDay() - persona.getNanoSecInicializado());
-                                            reloj.agregarSumaDeTiempos(persona.getNanoSecAgendado());
-                                            
-                                            logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId());
-                                            System.out.println("Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId());
+                                            reloj.agregarSumaDeTiempos(persona.getNanoSecAgendado());    
+                                            logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId() +" ("+ persona.getNanoSecAgendado()/1000000+" ms)");
+                                           
                                             break;
                                         }
                                     }
@@ -99,16 +94,22 @@ public class Agendar implements Runnable {
                     }
                     vacunatorios.getMutex().release();
 
-                    if (persona.getVacunatorioDispo() == false) {
-                        logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Vacunatorio seleccionado, no disponible");
+                    if (persona.getVacunatorioDispo() == false && persona.getVacunaDIspo() == false && persona.getAgendaDIspo() == false) {
+                        LocalTime time = LocalTime.now();
+                        persona.setNanoSecNoAgendado(time.toNanoOfDay() - persona.getNanoSecInicializado());                                            
+                        logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Vacunatorio "+persona.getVacunatorioSeleccionado()+": no disponible ("+ persona.getNanoSecNoAgendado()/1000000+" ms)");
                         espera.escribirLog(persona);
                     }
-                    if (persona.getVacunatorioDispo() == true && persona.getVacunaDIspo() == false) {
-                        logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Sin vacunas disponibles");
+                    if (persona.getVacunatorioDispo() == true && persona.getVacunaDIspo() == false  && persona.getAgendaDIspo() == false) {
+                        LocalTime time = LocalTime.now();
+                        persona.setNanoSecNoAgendado(time.toNanoOfDay() - persona.getNanoSecInicializado());  
+                        logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Vacunatorio "+persona.getVacunatorioSeleccionado()+": Sin vacunas disponibles ("+ persona.getNanoSecNoAgendado()/1000000+" ms)");
                         espera.escribirLog(persona);
                     }
                     if (persona.getVacunatorioDispo() == true && persona.getVacunaDIspo() == true && persona.getAgendaDIspo() == false) {
-                        logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Agenda llena");
+                        LocalTime time = LocalTime.now();
+                        persona.setNanoSecNoAgendado(time.toNanoOfDay() - persona.getNanoSecInicializado());  
+                        logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Vacunatorio "+persona.getVacunatorioSeleccionado()+": Agenda llena ("+ persona.getNanoSecNoAgendado()/1000000+" ms)");
                         espera.escribirLog(persona);
                     }
                 }
