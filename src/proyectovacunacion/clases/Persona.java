@@ -23,6 +23,7 @@ public class Persona {
     private boolean movilidad;
     private long nanoSecInicializado;
     private long nanoSecAgendado;
+    private long nanoSecNoAgendado;
     private Fecha primerFecha;
     private Fecha segundaFecha;
 
@@ -46,8 +47,16 @@ public class Persona {
         this.nanoSecAgendado = nanoSecAgendado;
     }
 
+    public void setNanoSecNoAgendado(long nanoSecNoAgendado) {
+        this.nanoSecNoAgendado = nanoSecNoAgendado;
+    }
+
     public long getNanoSecAgendado() {
         return nanoSecAgendado;
+    }
+
+    public long getNanoSecNoAgendado() {
+        return nanoSecNoAgendado;
     }
 
     public long getNanoSecInicializado() {
@@ -115,15 +124,21 @@ public class Persona {
     }
 
     public boolean getVacunatorioDispo() {
-        return this.habilitado;
+        return this.vacunatorioDisponible;
     }
 
     public boolean getAgendaDIspo() {
-        return this.habilitado;
+        return this.asignadaAgenda;
     }
 
     public boolean getVacunaDIspo() {
-        return this.habilitado;
+        return this.asignadaVacuna;
+    }
+
+    public String datosPersona() {
+        String cadena = this.cedula + "|" + this.departamento + "|" + this.vacunatorioSeleccionado + "|" + this.movilidad + "|" + this.grupoPrioritario;
+
+        return cadena;
     }
 
     public Persona(String ced, String depto, String vs, boolean mov, String grupoPrioritario) {

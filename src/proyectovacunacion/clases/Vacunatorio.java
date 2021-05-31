@@ -14,7 +14,7 @@ import java.util.concurrent.Semaphore;
  */
 public class Vacunatorio {
 
-    private String id;
+    private final String id;
     /*identificacion segun departamento barrio y numero
                         Ejemplo MOTC01 -> Montevideo Tres Cruces Vacunatorio 1
                         (puede haber varios por barrio)
@@ -25,6 +25,8 @@ public class Vacunatorio {
     private Queue<Fecha> fechasDisponibles;
     private Queue<Persona> agendasFuturas;//Guarda a aquellas personas que no se pudieron agendar
     private final String habilitado;
+    private long nanoSecInicializado;
+    private long nanoSecModificado;
 
     private Semaphore mutex;
     private Semaphore consumido;
@@ -104,5 +106,21 @@ public class Vacunatorio {
 
     public void setActualizado(Semaphore actualizado) {
         this.actualizado = actualizado;
+    }
+    
+    public void setNanoSecModificado(long nanoSecModificado) {
+        this.nanoSecModificado = nanoSecModificado;
+    }
+
+    public long getNanoSecModificado() {
+        return nanoSecModificado;
+    }
+
+    public long getNanoSecInicializado() {
+        return nanoSecInicializado;
+    }
+
+    public void setNanoSecInicializado(long nanoSecInicializado) {
+        this.nanoSecInicializado = nanoSecInicializado;
     }
 }
