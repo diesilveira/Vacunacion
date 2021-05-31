@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  *
@@ -35,7 +33,6 @@ public class Logger {
         try {
             fw = new FileWriter(archivoLog, true);
             BufferedWriter bw = new BufferedWriter(fw);
-    
             DateFormat dateFormat =  new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             Date date = new Date();
             bw.write("[FECHA: "+dateFormat.format(date)+"] [HILO: " + nombreHilo +"] EVENTO: "+listaLineasArchivo);

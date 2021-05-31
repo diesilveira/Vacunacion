@@ -58,7 +58,8 @@ public class GeneradorDeVacunatorios {
             
             Vacunatorio vacunatorioNuevo = new Vacunatorio(lineaAProcesar[0].trim(),
                     vacunas, fechasDisponibles, lineaAProcesar[8]);
-           
+            LocalTime time0 = LocalTime.now();
+            vacunatorioNuevo.setNanoSecInicializado(time0.toNanoOfDay());
             logSistema.escribirLog("Nuevo vacunatorio creado: "+lineaAProcesar[0].trim());
 
             vacunatorioNuevo.setMutex(new Semaphore(1, true));

@@ -39,6 +39,8 @@ public class GeneradorDeCriterios {
             String[] lineaAProcesar = lineaLeida.split("\\|");
             Criterio criterio = new Criterio(Integer.parseInt(lineaAProcesar[0].trim()),
                     lineaAProcesar[1].trim(), new Vacuna(lineaAProcesar[2].trim()));
+            LocalTime time0 = LocalTime.now();
+            criterio.setNanoSecInicializado(time0.toNanoOfDay());
 
             logSistema.escribirLog("Nuevo criterio creado: " + lineaAProcesar[1].trim());
             criterio.setMutex(new Semaphore(1, true));

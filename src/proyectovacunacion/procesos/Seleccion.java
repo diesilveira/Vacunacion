@@ -56,7 +56,6 @@ public class Seleccion implements Runnable {
                         criterio.getMutex().acquire();
                         criterio.agregarPersona(persona);
                         persona.habilitado();
-                        //this.logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Insertado en cola de Prioridad: " + criterio.getGrupoPrioritario());
                         criterio.getMutex().release();
                         criterio.getActualizado().release();
                     }
