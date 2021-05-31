@@ -12,14 +12,18 @@ import java.util.Queue;
  *
  * @author dsilv
  */
-public class Agenda {
+public class Fecha {
 
-    private LocalDateTime fechasDisponible;
+    private LocalDateTime fecha;
     private boolean asignada;
     private Persona personaAsignada;
 
-    public Agenda(LocalDateTime fechasDisponible) {
-        this.fechasDisponible = fechasDisponible;
+    public LocalDateTime getFechasDisponible() {
+        return fecha;
+    }
+
+    public Fecha(LocalDateTime fechasDisponible) {
+        this.fecha = fechasDisponible;
         this.asignada = false;
     }
 

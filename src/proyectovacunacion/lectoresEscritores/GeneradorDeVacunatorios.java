@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.Semaphore;
-import proyectovacunacion.clases.Agenda;
+import proyectovacunacion.clases.Fecha;
 import proyectovacunacion.clases.Vacuna;
 import proyectovacunacion.clases.Vacunatorio;
 import proyectovacunacion.clases.VacunatoriosActivos;
@@ -35,18 +35,31 @@ public class GeneradorDeVacunatorios {
             int stockSinovac = Integer.parseInt(lineaAProcesar[4].trim());
             vacunas.add(pfizzer);
             vacunas.add(sinovac);
-            
-            Queue<Agenda> fechasDisponibles = new LinkedList<>();
+
+            Queue<Fecha> fechasDisponibles = new LinkedList<>();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-            Agenda fecha1 = new Agenda(LocalDateTime.parse(lineaAProcesar[5].trim(), formatter));
-            Agenda fecha2 = new Agenda(LocalDateTime.parse(lineaAProcesar[6].trim(), formatter));
-            Agenda fecha3 = new Agenda(LocalDateTime.parse(lineaAProcesar[7].trim(), formatter));
-            fechasDisponibles.add(fecha1);
-            fechasDisponibles.add(fecha2);
-            fechasDisponibles.add(fecha3);
-            
+
+            Fecha fecha = new Fecha(LocalDateTime.parse(lineaAProcesar[5].trim(), formatter));
+            Fecha segundaFecha = new Fecha(fecha.getFechasDisponible().plusMonths(1));
+            int contador = (stockPfizzer + stockSinovac / 2);
+            fechasDisponibles.add(fecha);
+            fechasDisponibles.add(segundaFecha);
+            contador--;
+            int i = 1;
+            while (contador != 0) {
+                Fecha fecha2 = new Fecha(fecha.getFechasDisponible().plusMinutes(2 * i));
+                i++;
+                if (fecha2.getFechasDisponible().getHour() > 8 && fecha2.getFechasDisponible().getHour() < 20) {
+                    Fecha segundaFecha2 = new Fecha(fecha2.getFechasDisponible().plusMonths(1));
+                    fechasDisponibles.add(segundaFecha2);
+                    fechasDisponibles.add(fecha2);
+                    contador--;
+                }
+
+            }
+
             Vacunatorio vacunatorioNuevo = new Vacunatorio(lineaAProcesar[0].trim(),
-                    vacunas, fechasDisponibles, lineaAProcesar[8]);
+                    vacunas, fechasDisponibles, lineaAProcesar[7]);
 
             vacunatorioNuevo.setMutex(new Semaphore(1, true));
             vacunatorioNuevo.setConsumido(new Semaphore(3, true));
@@ -71,13 +84,12 @@ public class GeneradorDeVacunatorios {
 
                 }
 
-
             }
             //si no esta en la cola lo agrego
             if (enCola == false) {
 
                 vacunatoriosActivos.getVacunatoriosActivos().add(vacunatorioNuevo);
-                
+
             }
 
         }

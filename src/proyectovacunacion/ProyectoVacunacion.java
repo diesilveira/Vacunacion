@@ -86,8 +86,8 @@ public class ProyectoVacunacion {
         hiloAgenda1.start();
         hiloAgenda2.start();
         hiloAgenda3.start();
-
         
+
 //        try {
 //            criteriosActivos.setCriteriosDeAgenda(criterioAgenda.generarCriterios(criteriosActivos, "src/proyectovacunacion/archivos/CriteriosDeAgenda_2.csv"));
 //        } catch (InterruptedException ex) {
@@ -98,8 +98,8 @@ public class ProyectoVacunacion {
         } catch (InterruptedException ex) {
             Logger.getLogger(ProyectoVacunacion.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         sleep(15000);
-        System.out.println("Tiempo promedio de agenda de personas: " + String.valueOf(promedioDeAgenda.obtenerPromedioFinal()/1000000));
+        System.out.println("Tiempo promedio de agenda de personas: " + String.valueOf(promedioDeAgenda.obtenerPromedioFinal() / 1000000));
     }
 }

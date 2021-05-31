@@ -7,14 +7,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Clase que permite leer y escribir archivos que contienen cadenas de 
+ * Clase que permite leer y escribir archivos que contienen cadenas de
  * caracteres.
  */
 public class ManejadorArchivosGenerico {
 
-
     /**
      * Método que lee un archivo.
+     *
      * @param nombreCompletoArchivo
      * @param ignoreHeader
      * @return
@@ -26,7 +26,9 @@ public class ManejadorArchivosGenerico {
             fr = new FileReader(nombreCompletoArchivo);
             BufferedReader br = new BufferedReader(fr);
             String lineaActual = br.readLine();
-            if (ignoreHeader) lineaActual = br.readLine();
+            if (ignoreHeader) {
+                lineaActual = br.readLine();
+            }
             while (lineaActual != null) {
                 listaLineasArchivo.add(lineaActual);
                 lineaActual = br.readLine();

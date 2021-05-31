@@ -21,14 +21,14 @@ public class Criterio {
     private Semaphore mutex;
     private Semaphore consumido;
     private Semaphore actualizado;
-    private Vacuna tipoVacuna;
+    private Vacuna vacuna;
     private Queue<Persona> personasEnCriterio;
     private Logger logger;
 
     public Criterio(int prioridad, String grupoPrioritario, Vacuna tipoVacuna) {
         this.prioridad = prioridad;
         this.grupoPrioritario = grupoPrioritario;
-        this.tipoVacuna = tipoVacuna;
+        this.vacuna = tipoVacuna;
         this.personasEnCriterio = new LinkedList();
         this.logger = new Logger();
     }
@@ -37,12 +37,12 @@ public class Criterio {
         return prioridad;
     }
 
-    public Vacuna getTipoVacuna() {
-        return tipoVacuna;
+    public Vacuna getVacuna() {
+        return vacuna;
     }
 
-    public void setTipoVacuna(Vacuna tipoVacuna) {
-        this.tipoVacuna = tipoVacuna;
+    public void setVacuna(Vacuna vacuna) {
+        this.vacuna = vacuna;
     }
 
     public void setPrioridad(int prioridad) {

@@ -6,8 +6,7 @@
 package proyectovacunacion.procesos;
 
 import java.time.LocalTime;
-
-import proyectovacunacion.clases.Agenda;
+import proyectovacunacion.clases.Fecha;
 import proyectovacunacion.clases.Criterio;
 import proyectovacunacion.clases.CriteriosActivos;
 import proyectovacunacion.clases.Persona;
@@ -51,8 +50,6 @@ public class Agendar implements Runnable {
                         persona = criterio.getPersonasEnCriterio().remove();
                         criterioSeleccionado = criterio;
                         logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Removido de la cola de Prioridad: " + criterio.getGrupoPrioritario());
-                        System.out.println("Documento: " + persona.getCedula() + " Removido de la cola de Prioridad: " + criterio.getGrupoPrioritario());
-
                         criterio.getMutex().release();
                         criterio.getConsumido().release();
                         break;
@@ -69,21 +66,28 @@ public class Agendar implements Runnable {
                             //Si tengo un vacunatorio no permito que nadie tome las vacunas o las fechas hasta que verifique 
                             vacunatorio.getMutex().acquire();
                             for (Vacuna vacuna : vacunatorio.getVacunasDisponibles()) {
-                                if (vacuna.getTipo().equals(criterioSeleccionado.getTipoVacuna().getTipo()) && vacuna.getCantidad() > 0) {
+                                if (vacuna.getTipo().equals(criterioSeleccionado.getVacuna().getTipo()) && vacuna.getCantidad() > 0) {
                                     persona.tieneVacuna();
-                                    for (Agenda agenda : vacunatorio.getFechasDisponibles()) {
-                                        if (!agenda.isAsignada()) {
-                                            agenda.setAsignada(true);
-                                            agenda.setPersonaAsignada(persona);
+                                    for (Fecha primeraFecha : vacunatorio.getFechasDisponibles()) {
+                                        if (!primeraFecha.isAsignada()) {
+                                            primeraFecha.setAsignada(true);
+                                            primeraFecha.setPersonaAsignada(persona);
                                             vacuna.setCantidad(vacuna.getCantidad() - 1);
+                                            persona.setPrimerFecha(primeraFecha);
+
+                                            Fecha segFecha = new Fecha(primeraFecha.getFechasDisponible().plusMonths(1));
+                                            segFecha.setAsignada(true);
+                                            segFecha.setPersonaAsignada(persona);
+                                            vacuna.setCantidad(vacuna.getCantidad() - 1);
+                                            persona.setSegundaFecha(segFecha);
+
                                             persona.tieneAgenda();
                                             LocalTime time = LocalTime.now();
-                                            
+
                                             persona.setNanoSecAgendado(time.toNanoOfDay() - persona.getNanoSecInicializado());
                                             reloj.agregarSumaDeTiempos(persona.getNanoSecAgendado());
-                                            
+
                                             logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId());
-                                            System.out.println("Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId());
                                             break;
                                         }
                                     }
@@ -107,6 +111,7 @@ public class Agendar implements Runnable {
                     }
                 }
             } catch (InterruptedException ex) {
+                System.out.print(ex);
             }
         }
     }

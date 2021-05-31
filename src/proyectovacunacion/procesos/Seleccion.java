@@ -62,6 +62,7 @@ public class Seleccion implements Runnable {
                 }
 
             } catch (InterruptedException ex) {
+                System.out.print(ex);
             }
         }
     }

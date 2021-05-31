@@ -11,7 +11,6 @@ import proyectovacunacion.clases.Persona;
 import proyectovacunacion.lectoresEscritores.ManejadorArchivosGenerico;
 import proyectovacunacion.lectoresEscritores.Logger;
 import java.time.LocalTime;
-import proyectovacunacion.clases.Reloj;
 
 /**
  *
@@ -45,7 +44,7 @@ public class Captura implements Runnable {
                         lineaAProcesar[1].trim(), lineaAProcesar[2].trim(),
                         Boolean.parseBoolean(lineaAProcesar[3].trim()),
                         lineaAProcesar[4].trim());
-                
+
                 LocalTime time = LocalTime.now();
                 persona.setNanoSecInicializado(time.toNanoOfDay());
                 s_consumido.acquire();
@@ -59,6 +58,7 @@ public class Captura implements Runnable {
                 s_actualizado.release();
             }
         } catch (InterruptedException ex) {
+            System.out.print(ex);
         }
     }
 }

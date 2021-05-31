@@ -22,7 +22,7 @@ public class Vacunatorio {
                         los dos nuemros el numero de vacunatorio en ese barrio
      */
     private Queue<Vacuna> vacunasDisponibles;
-    private Queue<Agenda> fechasDisponibles;
+    private Queue<Fecha> fechasDisponibles;
     private Queue<Persona> agendasFuturas;//Guarda a aquellas personas que no se pudieron agendar
     private final String habilitado;
 
@@ -30,7 +30,7 @@ public class Vacunatorio {
     private Semaphore consumido;
     private Semaphore actualizado;
 
-    public Vacunatorio(String id, Queue<Vacuna> vacunasDisponibles, Queue<Agenda> fechasDisponibles, String habilitado) {
+    public Vacunatorio(String id, Queue<Vacuna> vacunasDisponibles, Queue<Fecha> fechasDisponibles, String habilitado) {
         this.id = id;
         this.vacunasDisponibles = vacunasDisponibles;
         this.fechasDisponibles = fechasDisponibles;
@@ -66,11 +66,11 @@ public class Vacunatorio {
         this.vacunasDisponibles = vacunasDisponibles;
     }
 
-    public Queue<Agenda> getFechasDisponibles() {
+    public Queue<Fecha> getFechasDisponibles() {
         return fechasDisponibles;
     }
 
-    public void setFechasDisponibles(Queue<Agenda> fechasDisponibles) {
+    public void setFechasDisponibles(Queue<Fecha> fechasDisponibles) {
         this.fechasDisponibles = fechasDisponibles;
     }
 

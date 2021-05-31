@@ -23,6 +23,24 @@ public class Persona {
     private boolean movilidad;
     private long nanoSecInicializado;
     private long nanoSecAgendado;
+    private Fecha primerFecha;
+    private Fecha segundaFecha;
+
+    public void setPrimerFecha(Fecha primerFecha) {
+        this.primerFecha = primerFecha;
+    }
+
+    public void setSegundaFecha(Fecha segundaFecha) {
+        this.segundaFecha = segundaFecha;
+    }
+
+    public Fecha getPrimerFecha() {
+        return primerFecha;
+    }
+
+    public Fecha getSegundaFecha() {
+        return segundaFecha;
+    }
 
     public void setNanoSecAgendado(long nanoSecAgendado) {
         this.nanoSecAgendado = nanoSecAgendado;
@@ -38,18 +56,6 @@ public class Persona {
 
     public void setNanoSecInicializado(long nanoSecInicializado) {
         this.nanoSecInicializado = nanoSecInicializado;
-    }
-
-    public Persona(String ced, String depto, String vs, boolean mov, String grupoPrioritario) {
-        this.cedula = ced;
-        this.departamento = depto;
-        this.vacunatorioSeleccionado = vs;
-        this.movilidad = mov;
-        this.grupoPrioritario = grupoPrioritario;
-        habilitado = false;
-        vacunatorioDisponible = false;
-        asignadaAgenda = false;
-        asignadaVacuna = false;
     }
 
     public void setGrupoPrioritario(String gp) {
@@ -118,5 +124,17 @@ public class Persona {
 
     public boolean getVacunaDIspo() {
         return this.habilitado;
+    }
+
+    public Persona(String ced, String depto, String vs, boolean mov, String grupoPrioritario) {
+        this.cedula = ced;
+        this.departamento = depto;
+        this.vacunatorioSeleccionado = vs;
+        this.movilidad = mov;
+        this.grupoPrioritario = grupoPrioritario;
+        habilitado = false;
+        vacunatorioDisponible = false;
+        asignadaAgenda = false;
+        asignadaVacuna = false;
     }
 }
