@@ -1,65 +1,33 @@
-[FECHA: 31/05/2021 18:01:58] EVENTO: Nuevo criterio creado: PersonalDeSalud
-[FECHA: 31/05/2021 18:01:58] EVENTO: Criterio PersonalDeSalud ingresado al sistema [18 ms]
-[FECHA: 31/05/2021 18:01:58] EVENTO: Nuevo criterio creado: Comorbilidades
-[FECHA: 31/05/2021 18:01:58] EVENTO: Criterio Comorbilidades ingresado al sistema [1 ms]
-[FECHA: 31/05/2021 18:01:58] EVENTO: Nuevo criterio creado: Mayor80
-[FECHA: 31/05/2021 18:01:58] EVENTO: Criterio Mayor80 ingresado al sistema [0 ms]
-[FECHA: 31/05/2021 18:01:58] EVENTO: Nuevo vacunatorio creado: MOTC01
-[FECHA: 31/05/2021 18:01:58] EVENTO: Vacunatorio : MOTC01 Nuevo. Ingresado al sistema [0 ms] 
-[FECHA: 31/05/2021 18:01:58] EVENTO: Nuevo vacunatorio creado: MOU01
-[FECHA: 31/05/2021 18:01:58] EVENTO: Vacunatorio : MOU01 Nuevo. Ingresado al sistema [1 ms] 
-[FECHA: 31/05/2021 18:01:58] EVENTO: Nuevo vacunatorio creado: MOLB01
-[FECHA: 31/05/2021 18:01:58] EVENTO: Vacunatorio : MOLB01 Nuevo. Ingresado al sistema [0 ms] 
-[FECHA: 31/05/2021 18:01:58] EVENTO: Nuevo vacunatorio creado: MOLBO5
-[FECHA: 31/05/2021 18:01:58] EVENTO: Vacunatorio : MOLBO5 Nuevo. Ingresado al sistema [1 ms] 
-[FECHA: 31/05/2021 18:01:58] EVENTO: Nuevo vacunatorio creado: CAPC01
-[FECHA: 31/05/2021 18:01:58] EVENTO: Vacunatorio : CAPC01 Nuevo. Ingresado al sistema [1 ms] 
-[FECHA: 31/05/2021 18:01:58] EVENTO: Nuevo vacunatorio creado: CAPA01
-[FECHA: 31/05/2021 18:01:58] EVENTO: Vacunatorio : CAPA01 Nuevo. Ingresado al sistema [0 ms] 
-[FECHA: 31/05/2021 18:01:58] EVENTO: Nuevo vacunatorio creado: CAPA02
-[FECHA: 31/05/2021 18:01:58] EVENTO: Vacunatorio : CAPA02 Nuevo. Ingresado al sistema [1 ms] 
-[FECHA: 31/05/2021 18:01:58] EVENTO: Nuevo criterio creado: PersonalDeSalud
-[FECHA: 31/05/2021 18:01:58] EVENTO: Criterio PersonalDeSalud reordenado [1 ms]
-[FECHA: 31/05/2021 18:01:58] EVENTO: Nuevo criterio creado: Comorbilidades
-[FECHA: 31/05/2021 18:01:59] EVENTO: Criterio Comorbilidades reordenado [0 ms]
-[FECHA: 31/05/2021 18:01:59] EVENTO: Nuevo criterio creado: Mayor80
-[FECHA: 31/05/2021 18:01:59] EVENTO: Criterio Mayor80 reordenado [0 ms]
-[FECHA: 31/05/2021 18:01:59] EVENTO: Nuevo vacunatorio creado: MOTC01
-[FECHA: 31/05/2021 18:01:59] EVENTO: Vacunatorio : MOTC01 ya ingresado en sistema. Agregando stock...[60 ms]
-[FECHA: 31/05/2021 18:01:59] EVENTO: Nuevo vacunatorio creado: MOU01
-[FECHA: 31/05/2021 18:01:59] EVENTO: [59 ms] Vacunatorio : MOU01 deshabilitado. Eliminado del sistema [59 ms]
-[FECHA: 31/05/2021 18:01:59] EVENTO: Nuevo vacunatorio creado: MOLB01
-[FECHA: 31/05/2021 18:01:59] EVENTO: Vacunatorio : MOLB01 ya ingresado en sistema. Agregando stock...[54 ms]
-[FECHA: 31/05/2021 18:03:55] EVENTO: Nuevo criterio creado: PersonalDeSalud
-[FECHA: 31/05/2021 18:03:55] EVENTO: Criterio PersonalDeSalud ingresado al sistema [17 ms]
-[FECHA: 31/05/2021 18:03:55] EVENTO: Nuevo criterio creado: Comorbilidades
-[FECHA: 31/05/2021 18:03:55] EVENTO: Criterio Comorbilidades ingresado al sistema [0 ms]
-[FECHA: 31/05/2021 18:03:55] EVENTO: Nuevo criterio creado: Mayor80
-[FECHA: 31/05/2021 18:03:55] EVENTO: Criterio Mayor80 ingresado al sistema [0 ms]
-[FECHA: 31/05/2021 18:03:55] EVENTO: Nuevo vacunatorio creado: MOTC01
-[FECHA: 31/05/2021 18:03:55] EVENTO: Vacunatorio : MOTC01 Nuevo. Ingresado al sistema [1 ms] 
-[FECHA: 31/05/2021 18:03:55] EVENTO: Nuevo vacunatorio creado: MOU01
-[FECHA: 31/05/2021 18:03:55] EVENTO: Vacunatorio : MOU01 Nuevo. Ingresado al sistema [1 ms] 
-[FECHA: 31/05/2021 18:03:55] EVENTO: Nuevo vacunatorio creado: MOLB01
-[FECHA: 31/05/2021 18:03:55] EVENTO: Vacunatorio : MOLB01 Nuevo. Ingresado al sistema [0 ms] 
-[FECHA: 31/05/2021 18:03:55] EVENTO: Nuevo vacunatorio creado: MOLBO5
-[FECHA: 31/05/2021 18:03:55] EVENTO: Vacunatorio : MOLBO5 Nuevo. Ingresado al sistema [1 ms] 
-[FECHA: 31/05/2021 18:03:55] EVENTO: Nuevo vacunatorio creado: CAPC01
-[FECHA: 31/05/2021 18:03:55] EVENTO: Vacunatorio : CAPC01 Nuevo. Ingresado al sistema [1 ms] 
-[FECHA: 31/05/2021 18:03:55] EVENTO: Nuevo vacunatorio creado: CAPA01
-[FECHA: 31/05/2021 18:03:55] EVENTO: Vacunatorio : CAPA01 Nuevo. Ingresado al sistema [0 ms] 
-[FECHA: 31/05/2021 18:03:55] EVENTO: Nuevo vacunatorio creado: CAPA02
-[FECHA: 31/05/2021 18:03:55] EVENTO: Vacunatorio : CAPA02 Nuevo. Ingresado al sistema [0 ms] 
-[FECHA: 31/05/2021 18:03:55] EVENTO: Nuevo criterio creado: PersonalDeSalud
-[FECHA: 31/05/2021 18:03:55] EVENTO: Criterio PersonalDeSalud reordenado [1 ms]
-[FECHA: 31/05/2021 18:03:55] EVENTO: Nuevo criterio creado: Comorbilidades
-[FECHA: 31/05/2021 18:03:55] EVENTO: Criterio Comorbilidades reordenado [1 ms]
-[FECHA: 31/05/2021 18:03:55] EVENTO: Nuevo criterio creado: Mayor80
-[FECHA: 31/05/2021 18:03:55] EVENTO: Criterio Mayor80 reordenado [1 ms]
-[FECHA: 31/05/2021 18:03:55] EVENTO: Nuevo vacunatorio creado: MOTC01
-[FECHA: 31/05/2021 18:03:55] EVENTO: Vacunatorio : MOTC01 ya ingresado en sistema. Agregando stock...[62 ms]
-[FECHA: 31/05/2021 18:03:55] EVENTO: Nuevo vacunatorio creado: MOU01
-[FECHA: 31/05/2021 18:03:55] EVENTO: [58 ms] Vacunatorio : MOU01 deshabilitado. Eliminado del sistema [58 ms]
-[FECHA: 31/05/2021 18:03:55] EVENTO: Nuevo vacunatorio creado: MOLB01
-[FECHA: 31/05/2021 18:03:55] EVENTO: Vacunatorio : MOLB01 ya ingresado en sistema. Agregando stock...[49 ms]
-[FECHA: 31/05/2021 18:04:10] EVENTO: Tiempo promedio de agenda de personas: 2
+[FECHA: 31/05/2021 22:30:22] EVENTO: Nuevo criterio creado: PersonalDeSalud
+[FECHA: 31/05/2021 22:30:22] EVENTO: Criterio PersonalDeSalud ingresado al sistema [34 ms]
+[FECHA: 31/05/2021 22:30:22] EVENTO: Nuevo criterio creado: Comorbilidades
+[FECHA: 31/05/2021 22:30:22] EVENTO: Criterio Comorbilidades ingresado al sistema [0 ms]
+[FECHA: 31/05/2021 22:30:22] EVENTO: Nuevo criterio creado: Mayor80
+[FECHA: 31/05/2021 22:30:22] EVENTO: Criterio Mayor80 ingresado al sistema [0 ms]
+[FECHA: 31/05/2021 22:30:22] EVENTO: Nuevo vacunatorio creado: MOTC01
+[FECHA: 31/05/2021 22:30:22] EVENTO: Vacunatorio : MOTC01 Nuevo. Ingresado al sistema [0 ms] 
+[FECHA: 31/05/2021 22:30:22] EVENTO: Nuevo vacunatorio creado: MOU01
+[FECHA: 31/05/2021 22:30:22] EVENTO: Vacunatorio : MOU01 Nuevo. Ingresado al sistema [0 ms] 
+[FECHA: 31/05/2021 22:30:22] EVENTO: Nuevo vacunatorio creado: MOLB01
+[FECHA: 31/05/2021 22:30:22] EVENTO: Vacunatorio : MOLB01 Nuevo. Ingresado al sistema [0 ms] 
+[FECHA: 31/05/2021 22:30:22] EVENTO: Nuevo vacunatorio creado: MOLBO5
+[FECHA: 31/05/2021 22:30:22] EVENTO: Vacunatorio : MOLBO5 Nuevo. Ingresado al sistema [1 ms] 
+[FECHA: 31/05/2021 22:30:22] EVENTO: Nuevo vacunatorio creado: CAPC01
+[FECHA: 31/05/2021 22:30:22] EVENTO: Vacunatorio : CAPC01 Nuevo. Ingresado al sistema [0 ms] 
+[FECHA: 31/05/2021 22:30:22] EVENTO: Nuevo vacunatorio creado: CAPA01
+[FECHA: 31/05/2021 22:30:22] EVENTO: Vacunatorio : CAPA01 Nuevo. Ingresado al sistema [0 ms] 
+[FECHA: 31/05/2021 22:30:22] EVENTO: Nuevo vacunatorio creado: CAPA02
+[FECHA: 31/05/2021 22:30:22] EVENTO: Vacunatorio : CAPA02 Nuevo. Ingresado al sistema [0 ms] 
+[FECHA: 31/05/2021 22:30:22] EVENTO: Nuevo criterio creado: PersonalDeSalud
+[FECHA: 31/05/2021 22:30:22] EVENTO: Criterio PersonalDeSalud reordenado [3 ms]
+[FECHA: 31/05/2021 22:30:22] EVENTO: Nuevo criterio creado: Comorbilidades
+[FECHA: 31/05/2021 22:30:22] EVENTO: Criterio Comorbilidades reordenado [0 ms]
+[FECHA: 31/05/2021 22:30:22] EVENTO: Nuevo criterio creado: Mayor80
+[FECHA: 31/05/2021 22:30:22] EVENTO: Criterio Mayor80 reordenado [0 ms]
+[FECHA: 31/05/2021 22:30:22] EVENTO: Nuevo vacunatorio creado: MOTC01
+[FECHA: 31/05/2021 22:30:22] EVENTO: Vacunatorio : MOTC01 ya ingresado en sistema. Agregando stock...[169 ms]
+[FECHA: 31/05/2021 22:30:22] EVENTO: Nuevo vacunatorio creado: MOU01
+[FECHA: 31/05/2021 22:30:22] EVENTO: [158 ms] Vacunatorio : MOU01 deshabilitado. Eliminado del sistema [158 ms]
+[FECHA: 31/05/2021 22:30:22] EVENTO: Nuevo vacunatorio creado: MOLB01
+[FECHA: 31/05/2021 22:30:22] EVENTO: Vacunatorio : MOLB01 ya ingresado en sistema. Agregando stock...[148 ms]
+[FECHA: 31/05/2021 22:30:37] EVENTO: Tiempo promedio de agenda de personas: 1

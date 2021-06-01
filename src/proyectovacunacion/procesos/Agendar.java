@@ -6,6 +6,7 @@
 package proyectovacunacion.procesos;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import proyectovacunacion.clases.Fecha;
 import proyectovacunacion.clases.Criterio;
@@ -54,8 +55,6 @@ public class Agendar implements Runnable {
                         persona = criterio.getPersonasEnCriterio().remove();
                         criterioSeleccionado = criterio;
 
-                        logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Removido de la cola de Prioridad: " + criterio.getGrupoPrioritario());
-
                         criterio.getMutex().release();
                         criterio.getConsumido().release();
                         break;
@@ -91,8 +90,9 @@ public class Agendar implements Runnable {
                                             LocalTime time = LocalTime.now();
 
                                             persona.setNanoSecAgendado(time.toNanoOfDay() - persona.getNanoSecInicializado());
-                                            reloj.agregarSumaDeTiempos(persona.getNanoSecAgendado());    
-                                            logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId() +" ("+ persona.getNanoSecAgendado()/1000000+" ms)");
+                                            reloj.agregarSumaDeTiempos(persona.getNanoSecAgendado());   
+                                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+                                            logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId() +" Primera dosis: "+persona.getPrimerFecha().getFechasDisponible().toString()+" Segunda dosis: "+persona.getSegundaFecha().getFechasDisponible().toString() +" ("+ persona.getNanoSecAgendado()/1000000+" ms)");
 
                                             break;
                                         }

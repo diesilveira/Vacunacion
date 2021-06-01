@@ -23,7 +23,7 @@ public class EscritorPersonasEspera {
      * @param listaLineasArchivo lista con las lineas del archivo
      */
     
-    private static final String archivoEspera = "src/proyectovacunacion/archivos/personasEspera.txt";
+    private static final String archivoEspera = "src/proyectovacunacion/archivos/logPersonasEspera.txt";
     
     public void escribirLog(Persona persona) {
         FileWriter fw;
