@@ -21,6 +21,7 @@ import proyectovacunacion.lectoresEscritores.GeneradorDeCriterios;
 import proyectovacunacion.lectoresEscritores.GeneradorDeVacunatorios;
 import proyectovacunacion.lectoresEscritores.LoggerSistema;
 import proyectovacunacion.procesos.Agendar;
+import proyectovacunacion.clases.Server;
 
 /**
  *
@@ -32,6 +33,10 @@ public class ProyectoVacunacion {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InterruptedException {
+        
+//        Server server = new Server();
+//        server.start(80);
+        
         LoggerSistema loggerSistema = new LoggerSistema();
         
         //Se simula la recepción de solicitudes de diferentes clientes.
