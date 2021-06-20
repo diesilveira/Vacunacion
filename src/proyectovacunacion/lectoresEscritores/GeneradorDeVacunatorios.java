@@ -6,7 +6,7 @@
 package proyectovacunacion.lectoresEscritores;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -24,11 +24,9 @@ import proyectovacunacion.clases.VacunatoriosActivos;
  */
 public class GeneradorDeVacunatorios {
     LoggerSistema logSistema;
-    private final Reloj reloj;
 
-    public GeneradorDeVacunatorios(Reloj rel) {
+    public GeneradorDeVacunatorios() {
         logSistema = new LoggerSistema();
-        this.reloj = rel;
     }
     
 
@@ -73,8 +71,6 @@ public class GeneradorDeVacunatorios {
 
                     vacunas, fechasDisponibles, lineaAProcesar[6]);
 
-            LocalTime time0 = LocalTime.now();
-            vacunatorioNuevo.setNanoSecInicializado(time0.toNanoOfDay());
             logSistema.escribirLog("Nuevo vacunatorio creado: "+lineaAProcesar[0].trim());
 
 
@@ -91,15 +87,11 @@ public class GeneradorDeVacunatorios {
                     if (vacunatorioNuevo.getHabilitado().equals("true")) {
                         //agrego las vacunas
                         vacunatorioEnCola.agregarStock(stockPfizzer, stockSinovac);
-                        LocalTime time = LocalTime.now();
-                        vacunatorioEnCola.setNanoSecModificado(time.toNanoOfDay() - vacunatorioEnCola.getNanoSecInicializado());
-                        logSistema.escribirLog("Vacunatorio : "+lineaAProcesar[0].trim()+" ya ingresado en sistema. Agregando stock...[" + vacunatorioEnCola.getNanoSecModificado() / 1000000 + " ms]");
+                        logSistema.escribirLog("Vacunatorio : "+lineaAProcesar[0].trim()+" ya ingresado en sistema. Agregando stock...");
                     } else {
                         //si no esta habilitado lo saco de la cola
                         vacunatoriosActivos.getVacunatoriosActivos().remove(vacunatorioEnCola);
-                        LocalTime time2 = LocalTime.now();
-                        vacunatorioEnCola.setNanoSecModificado(time2.toNanoOfDay() - vacunatorioEnCola.getNanoSecInicializado());
-                        logSistema.escribirLog("[" + vacunatorioEnCola.getNanoSecModificado() / 1000000 + " ms] Vacunatorio : "+lineaAProcesar[0].trim()+" deshabilitado. Eliminado del sistema [" + vacunatorioEnCola.getNanoSecModificado() / 1000000 + " ms]");
+                        logSistema.escribirLog("Vacunatorio : "+lineaAProcesar[0].trim()+" deshabilitado. Eliminado del sistema");
                     }
                     enCola = true;
                     break;
@@ -108,14 +100,9 @@ public class GeneradorDeVacunatorios {
             }
             //si no esta en la cola lo agrego
             if (enCola == false) {
-                LocalTime time = LocalTime.now();
                 vacunatoriosActivos.getVacunatoriosActivos().add(vacunatorioNuevo);
-
-                vacunatorioNuevo.setNanoSecModificado(time.toNanoOfDay() - vacunatorioNuevo.getNanoSecInicializado());
-                logSistema.escribirLog("Vacunatorio : "+lineaAProcesar[0].trim()+" Nuevo. Ingresado al sistema [" + vacunatorioNuevo.getNanoSecModificado() / 1000000 + " ms] ");
-                
+                logSistema.escribirLog("Vacunatorio : "+lineaAProcesar[0].trim()+" Nuevo. Ingresado al sistema");       
             }
-
         }
 
         vacunatoriosActivos.getMutex().release();

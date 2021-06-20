@@ -14,35 +14,24 @@ import java.util.concurrent.Semaphore;
 public class Reloj {
 
     private int contador;
-    private long sumaDeTiempos;
     public Semaphore mutex;
 
-    public void setContador(int contador) {
-        this.contador = contador;
+    public Reloj() {
+        this.contador = 0;
         this.mutex = new Semaphore(1);
     }
 
-    public long getSumaDeTiempos() {
-        return sumaDeTiempos;
-    }
+    public void setContador(int contador) {
+        this.contador = contador;
+        }
 
     public int getContador() {
         return contador;
     }
 
-    public Reloj() {
-        this.contador = 0;
-        this.sumaDeTiempos = 0;
-    }
-
-    public void agregarSumaDeTiempos(long n) {
-
-        this.sumaDeTiempos += n;
+    public void agregarCuenta() throws InterruptedException {
+        mutex.acquire();
         this.contador++;
+        mutex.release();
     }
-
-    public long obtenerPromedioFinal() {
-        return (this.sumaDeTiempos / this.contador);
-    }
-
 }

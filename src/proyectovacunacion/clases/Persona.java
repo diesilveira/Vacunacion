@@ -21,9 +21,9 @@ public class Persona {
     private boolean asignadaAgenda;
     private int edad;
     private boolean movilidad;
-    private long nanoSecInicializado;
-    private long nanoSecAgendado;
-    private long nanoSecNoAgendado;
+    private int cicloInicializado;
+    private int cicloAgendado;
+    private int cicloNoAgendado;
     private Fecha primerFecha;
     private Fecha segundaFecha;
 
@@ -43,28 +43,28 @@ public class Persona {
         return segundaFecha;
     }
 
-    public void setNanoSecAgendado(long nanoSecAgendado) {
-        this.nanoSecAgendado = nanoSecAgendado;
+    public void setCicloAgendado(int ciclo) {
+        this.cicloAgendado = ciclo;
     }
 
-    public void setNanoSecNoAgendado(long nanoSecNoAgendado) {
-        this.nanoSecNoAgendado = nanoSecNoAgendado;
+    public void setCicloNoAgendado(int ciclo) {
+        this.cicloNoAgendado = ciclo;
     }
 
-    public long getNanoSecAgendado() {
-        return nanoSecAgendado;
+    public int getCicloAgendado() {
+        return cicloAgendado;
     }
 
-    public long getNanoSecNoAgendado() {
-        return nanoSecNoAgendado;
+    public int getCicloNoAgendado() {
+        return cicloNoAgendado;
     }
 
-    public long getNanoSecInicializado() {
-        return nanoSecInicializado;
+    public int getCicloInicializado() {
+        return cicloInicializado;
     }
 
-    public void setNanoSecInicializado(long nanoSecInicializado) {
-        this.nanoSecInicializado = nanoSecInicializado;
+    public void setCicloInicializado(int ciclo) {
+        this.cicloInicializado = ciclo;
     }
 
     public void setGrupoPrioritario(String gp) {

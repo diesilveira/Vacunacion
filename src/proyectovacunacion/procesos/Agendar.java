@@ -85,14 +85,10 @@ public class Agendar implements Runnable {
                                             segFecha.setPersonaAsignada(persona);
                                             vacuna.setCantidad(vacuna.getCantidad() - 1);
                                             persona.setSegundaFecha(segFecha);
-
                                             persona.tieneAgenda();
-                                            LocalTime time = LocalTime.now();
-
-                                            persona.setNanoSecAgendado(time.toNanoOfDay() - persona.getNanoSecInicializado());
-                                            reloj.agregarSumaDeTiempos(persona.getNanoSecAgendado());   
-                                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-                                            logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId() +" Primera dosis: "+persona.getPrimerFecha().getFechasDisponible().toString()+" Segunda dosis: "+persona.getSegundaFecha().getFechasDisponible().toString() +" ("+ persona.getNanoSecAgendado()/1000000+" ms)");
+                                            persona.setCicloAgendado(reloj.getContador());
+                                            reloj.agregarCuenta();
+                                            logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId() + " Primera dosis: " + persona.getPrimerFecha().getFechasDisponible().toString() + " Segunda dosis: " + persona.getSegundaFecha().getFechasDisponible().toString() + " (" + (persona.getCicloAgendado() - persona.getCicloInicializado()) + " ciclos)");
 
                                             break;
                                         }
@@ -107,21 +103,21 @@ public class Agendar implements Runnable {
                     vacunatorios.getMutex().release();
 
                     if (persona.getVacunatorioDispo() == false && persona.getVacunaDIspo() == false && persona.getAgendaDIspo() == false) {
-                        LocalTime time = LocalTime.now();
-                        persona.setNanoSecNoAgendado(time.toNanoOfDay() - persona.getNanoSecInicializado());                                            
-                        logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Vacunatorio "+persona.getVacunatorioSeleccionado()+": no disponible ("+ persona.getNanoSecNoAgendado()/1000000+" ms)");
+
+                        persona.setCicloNoAgendado(reloj.getContador());
+                        logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Vacunatorio " + persona.getVacunatorioSeleccionado() + ": no disponible (" + (persona.getCicloNoAgendado() - persona.getCicloInicializado()) + " ciclos)");
                         espera.escribirLog(persona);
                     }
-                    if (persona.getVacunatorioDispo() == true && persona.getVacunaDIspo() == false  && persona.getAgendaDIspo() == false) {
-                        LocalTime time = LocalTime.now();
-                        persona.setNanoSecNoAgendado(time.toNanoOfDay() - persona.getNanoSecInicializado());  
-                        logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Vacunatorio "+persona.getVacunatorioSeleccionado()+": Sin vacunas disponibles ("+ persona.getNanoSecNoAgendado()/1000000+" ms)");
+                    if (persona.getVacunatorioDispo() == true && persona.getVacunaDIspo() == false && persona.getAgendaDIspo() == false) {
+
+                        persona.setCicloNoAgendado(reloj.getContador());
+                        logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Vacunatorio " + persona.getVacunatorioSeleccionado() + ": Sin vacunas disponibles (" + (persona.getCicloNoAgendado() - persona.getCicloInicializado()) + " ciclos)");
                         espera.escribirLog(persona);
                     }
                     if (persona.getVacunatorioDispo() == true && persona.getVacunaDIspo() == true && persona.getAgendaDIspo() == false) {
-                        LocalTime time = LocalTime.now();
-                        persona.setNanoSecNoAgendado(time.toNanoOfDay() - persona.getNanoSecInicializado());  
-                        logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Vacunatorio "+persona.getVacunatorioSeleccionado()+": Agenda llena ("+ persona.getNanoSecNoAgendado()/1000000+" ms)");
+
+                        persona.setCicloNoAgendado(reloj.getContador());
+                        logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Vacunatorio " + persona.getVacunatorioSeleccionado() + ": Agenda llena (" + (persona.getCicloNoAgendado() - persona.getCicloInicializado()) + " ciclos)");
                         espera.escribirLog(persona);
                     }
                 }

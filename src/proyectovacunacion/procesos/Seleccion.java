@@ -12,6 +12,7 @@ import proyectovacunacion.clases.Criterio;
 import proyectovacunacion.clases.Persona;
 import proyectovacunacion.lectoresEscritores.EscritorPersonasEspera;
 import proyectovacunacion.lectoresEscritores.Logger;
+import proyectovacunacion.clases.Reloj;
 
 /**
  *
@@ -26,16 +27,17 @@ public class Seleccion implements Runnable {
     private final Queue<Criterio> colaCriterio;
     private final Logger logger;
     private final EscritorPersonasEspera espera;
+    private Reloj reloj;
 
-    public Seleccion(Semaphore s_recepcion, Semaphore c, Semaphore a, Queue<Persona> colaRecepcion, Queue<Criterio> colaCriterio) {
+    public Seleccion(Semaphore s_recepcion, Semaphore c, Semaphore a, Queue<Persona> colaRecepcion, Queue<Criterio> colaCriterio, Reloj rel) {
         this.s_recepcion = s_recepcion;
         this.s_consumido = c;
         this.s_actualizado = a;
         this.colaRecepcion = colaRecepcion;
         this.colaCriterio = colaCriterio;
         this.logger = new Logger();
-
         this.espera = new EscritorPersonasEspera();
+        this.reloj = rel;
 
     }
 
@@ -62,14 +64,11 @@ public class Seleccion implements Runnable {
                   
                 }
                   if (persona.getHabilitado() == false) {
-                        
-                      LocalTime time = LocalTime.now();
-                      persona.setNanoSecNoAgendado(time.toNanoOfDay() - persona.getNanoSecInicializado());
+                      persona.setCicloNoAgendado(reloj.getContador() - persona.getCicloInicializado());
                       this.logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula()
-                              + " No habilitado a vacunarse - [Grupo " + persona.getGrupoPrioritario() + "] (" + persona.getNanoSecNoAgendado() / 1000000 + " ms)");
+                              + " No habilitado a vacunarse - [Grupo " + persona.getGrupoPrioritario() + "] (" + persona.getCicloNoAgendado() + " ciclos)");
                         this.espera.escribirLog(persona);
                     }
-
             } catch (InterruptedException ex) {
                 System.out.print(ex);
             }

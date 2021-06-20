@@ -13,8 +13,8 @@ import java.io.*;
  * @author danie
  */
 public class ClientHandler extends Thread {
-    private Socket clientSocket;
-    private Server server;//
+    private final Socket clientSocket;
+    private final Server server;//
     private PrintWriter out;
     private BufferedReader in;
 
@@ -23,6 +23,7 @@ public class ClientHandler extends Thread {
         this.server = server;
     }
 
+    @Override
     public void run() {
         try{
             out = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -41,7 +42,7 @@ public class ClientHandler extends Thread {
             out.close();
             clientSocket.close();
             this.server.stop();//
-        }catch (Exception e ) {
+        }catch (IOException e ) {
             System.err.println(e);
         }   
     }    

@@ -11,6 +11,7 @@ import proyectovacunacion.clases.Persona;
 import proyectovacunacion.lectoresEscritores.ManejadorArchivosGenerico;
 import proyectovacunacion.lectoresEscritores.Logger;
 import java.time.LocalTime;
+import proyectovacunacion.clases.Reloj;
 
 /**
  *
@@ -24,14 +25,16 @@ public class Captura implements Runnable {
     private final Semaphore s_actualizado;
     private final Queue<Persona> colaRecepcion;
     private final Logger logger;
+    private Reloj reloj;
 
-    public Captura(String rutaArchivo, Semaphore s, Semaphore c, Semaphore a, Queue<Persona> colaRecepcion) {
+    public Captura(String rutaArchivo, Semaphore s, Semaphore c, Semaphore a, Queue<Persona> colaRecepcion, Reloj rel) {
         this.rutaArchivo = rutaArchivo;
         this.s = s;
         this.s_consumido = c;
         this.s_actualizado = a;
         this.colaRecepcion = colaRecepcion;
         this.logger = new Logger();
+        this.reloj = rel;
     }
 
     @Override
@@ -44,9 +47,7 @@ public class Captura implements Runnable {
                         lineaAProcesar[1].trim(), lineaAProcesar[2].trim(),
                         Boolean.parseBoolean(lineaAProcesar[3].trim()),
                         lineaAProcesar[4].trim());
-
-                LocalTime time = LocalTime.now();
-                persona.setNanoSecInicializado(time.toNanoOfDay());
+                persona.setCicloInicializado(reloj.getContador());
                 s_consumido.acquire();
                 s.acquire();
 
@@ -57,6 +58,7 @@ public class Captura implements Runnable {
                 s.release();
                 s_actualizado.release();
             }
+            reloj.agregarCuenta();
         } catch (InterruptedException ex) {
             System.out.print(ex);
         }

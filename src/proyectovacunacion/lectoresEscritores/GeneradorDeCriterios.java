@@ -5,7 +5,6 @@
  */
 package proyectovacunacion.lectoresEscritores;
 
-import java.time.LocalTime;
 import java.util.Queue;
 import java.util.LinkedList;
 import java.util.concurrent.Semaphore;
@@ -13,7 +12,6 @@ import proyectovacunacion.clases.Vacuna;
 import proyectovacunacion.clases.Criterio;
 import proyectovacunacion.clases.ComparadorDeCriterios;
 import proyectovacunacion.clases.CriteriosActivos;
-import proyectovacunacion.clases.Reloj;
 
 /**
  *
@@ -22,11 +20,9 @@ import proyectovacunacion.clases.Reloj;
 public class GeneradorDeCriterios {
 
     private final LoggerSistema logSistema;
-    private final Reloj reloj;
 
-    public GeneradorDeCriterios(Reloj rel) {
+    public GeneradorDeCriterios() {
         logSistema = new LoggerSistema();
-        this.reloj = rel;
     }
 
     //Cuando generamos los criterios asumimos que vienen ordenados.
@@ -39,9 +35,6 @@ public class GeneradorDeCriterios {
             String[] lineaAProcesar = lineaLeida.split("\\|");
             Criterio criterio = new Criterio(Integer.parseInt(lineaAProcesar[0].trim()),
                     lineaAProcesar[1].trim(), new Vacuna(lineaAProcesar[2].trim()));
-            LocalTime time0 = LocalTime.now();
-            criterio.setNanoSecInicializado(time0.toNanoOfDay());
-
             logSistema.escribirLog("Nuevo criterio creado: " + lineaAProcesar[1].trim());
             criterio.setMutex(new Semaphore(1, true));
             criterio.setConsumido(new Semaphore(3, true));
@@ -51,18 +44,14 @@ public class GeneradorDeCriterios {
                 if (criterioEnCola.getGrupoPrioritario().equals(criterio.getGrupoPrioritario())) {
                     criterios.getCriteriosDeAgenda().remove(criterioEnCola);
                     criterios.getCriteriosDeAgenda().add(criterio);
-                    LocalTime time = LocalTime.now();
-                    criterio.setNanoSecModificado(time.toNanoOfDay() - criterio.getNanoSecInicializado());
-                    logSistema.escribirLog("Criterio " + lineaAProcesar[1].trim() + " reordenado [" + criterio.getNanoSecModificado() / 1000000 + " ms]" );
+                    logSistema.escribirLog("Criterio " + lineaAProcesar[1].trim() + " reordenado" );
                     enCola = true;
                     break;
                 }
             }
             if (enCola == false) {
                 criterios.getCriteriosDeAgenda().add(criterio);
-                LocalTime time = LocalTime.now();
-                criterio.setNanoSecModificado(time.toNanoOfDay() - criterio.getNanoSecInicializado());
-                logSistema.escribirLog("Criterio " + lineaAProcesar[1].trim() + " ingresado al sistema [" + criterio.getNanoSecModificado() / 1000000 + " ms]");
+                logSistema.escribirLog("Criterio " + lineaAProcesar[1].trim() + " ingresado al sistema.");
             }
         }
         LinkedList<Criterio> listaAOrdenar = (LinkedList<Criterio>) criterios.getCriteriosDeAgenda();
