@@ -23,7 +23,7 @@ public class Reloj {
 
     public void setContador(int contador) {
         this.contador = contador;
-        }
+    }
 
     public int getContador() {
         return contador;

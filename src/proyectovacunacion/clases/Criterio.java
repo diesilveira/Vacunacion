@@ -118,7 +118,7 @@ public class Criterio {
         }
 
     }
-        
+
     public void setNanoSecModificado(long nanoSecModificado) {
         this.nanoSecModificado = nanoSecModificado;
     }

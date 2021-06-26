@@ -5,9 +5,6 @@
  */
 package proyectovacunacion.procesos;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
 import proyectovacunacion.clases.Fecha;
 import proyectovacunacion.clases.Criterio;
 import proyectovacunacion.clases.CriteriosActivos;
@@ -73,31 +70,37 @@ public class Agendar implements Runnable {
                             for (Vacuna vacuna : vacunatorio.getVacunasDisponibles()) {
                                 if (vacuna.getTipo().equals(criterioSeleccionado.getVacuna().getTipo()) && vacuna.getCantidad() > 0) {
                                     persona.tieneVacuna();
-                                    for (Fecha primeraFecha : vacunatorio.getFechasDisponibles()) {
-                                        if (!primeraFecha.isAsignada()) {
-                                            primeraFecha.setAsignada(true);
-                                            primeraFecha.setPersonaAsignada(persona);
-                                            vacuna.setCantidad(vacuna.getCantidad() - 1);
-                                            persona.setPrimerFecha(primeraFecha);
+                                    int fecha = 1;
+                                    for (Fecha fechaDeAgenda : vacunatorio.getFechasDisponibles()) {
 
-                                            Fecha segFecha = new Fecha(primeraFecha.getFechasDisponible().plusMonths(1));
-                                            segFecha.setAsignada(true);
-                                            segFecha.setPersonaAsignada(persona);
+                                        if (!fechaDeAgenda.isAsignada() && (fecha == 1)) {
+                                            fechaDeAgenda.setAsignada(true);
+                                            fechaDeAgenda.setPersonaAsignada(persona);
                                             vacuna.setCantidad(vacuna.getCantidad() - 1);
-                                            persona.setSegundaFecha(segFecha);
+                                            persona.setPrimerFecha(fechaDeAgenda);
+                                            fecha++;
+                                            logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId() + " Primera dosis: " + persona.getPrimerFecha().getFechasDisponible().toString() + " (" + (persona.getCicloAgendado() - persona.getCicloInicializado()) + " ciclos)");
+                                            
+                                        }
+                                        if (!fechaDeAgenda.isAsignada() && (fecha == 2)) {
+                                            fechaDeAgenda.setAsignada(true);
+                                            fechaDeAgenda.setPersonaAsignada(persona);
+                                            vacuna.setCantidad(vacuna.getCantidad() - 1);
+                                            persona.setPrimerFecha(fechaDeAgenda);
+                                            fecha = 1;
                                             persona.tieneAgenda();
                                             persona.setCicloAgendado(reloj.getContador());
                                             reloj.agregarCuenta();
-                                            logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId() + " Primera dosis: " + persona.getPrimerFecha().getFechasDisponible().toString() + " Segunda dosis: " + persona.getSegundaFecha().getFechasDisponible().toString() + " (" + (persona.getCicloAgendado() - persona.getCicloInicializado()) + " ciclos)");
-
+                                            logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId() + " Segunda dosis: " + persona.getPrimerFecha().getFechasDisponible().toString() + " (" + (persona.getCicloAgendado() - persona.getCicloInicializado()) + " ciclos)");
                                             break;
                                         }
+
                                     }
                                     break;
                                 }
                             }
                             vacunatorio.getMutex().release();
-                            break;
+//                            break;
                         }
                     }
                     vacunatorios.getMutex().release();

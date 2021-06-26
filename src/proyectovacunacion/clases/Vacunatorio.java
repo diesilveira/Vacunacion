@@ -107,7 +107,7 @@ public class Vacunatorio {
     public void setActualizado(Semaphore actualizado) {
         this.actualizado = actualizado;
     }
-    
+
     public void setNanoSecModificado(long nanoSecModificado) {
         this.nanoSecModificado = nanoSecModificado;
     }

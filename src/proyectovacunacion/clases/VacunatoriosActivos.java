@@ -16,9 +16,7 @@ import java.util.concurrent.Semaphore;
 public class VacunatoriosActivos {
 
     private Semaphore mutex;
-    private Queue <Vacunatorio> vacunatoriosActivos;
-
-
+    private Queue<Vacunatorio> vacunatoriosActivos;
 
     public VacunatoriosActivos() {
         this.mutex = new Semaphore(1, true);

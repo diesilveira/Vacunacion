@@ -24,16 +24,16 @@ public class ManejadorArchivosGenerico {
         ArrayList<String> listaLineasArchivo = new ArrayList<>();
         try {
             fr = new FileReader(nombreCompletoArchivo);
-            BufferedReader br = new BufferedReader(fr);
-            String lineaActual = br.readLine();
-            if (ignoreHeader) {
-                lineaActual = br.readLine();
+            try (BufferedReader br = new BufferedReader(fr)) {
+                String lineaActual = br.readLine();
+                if (ignoreHeader) {
+                    lineaActual = br.readLine();
+                }
+                while (lineaActual != null) {
+                    listaLineasArchivo.add(lineaActual);
+                    lineaActual = br.readLine();
+                }
             }
-            while (lineaActual != null) {
-                listaLineasArchivo.add(lineaActual);
-                lineaActual = br.readLine();
-            }
-            br.close();
             fr.close();
         } catch (FileNotFoundException e) {
             System.out.println("Error al leer el archivo "

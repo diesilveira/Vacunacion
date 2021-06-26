@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  */
 public class Fecha {
 
-    private LocalDateTime fecha;
+    private final LocalDateTime fecha;
     private boolean asignada;
     private Persona personaAsignada;
 

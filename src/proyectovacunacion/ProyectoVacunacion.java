@@ -31,6 +31,7 @@ public class ProyectoVacunacion {
 
     /**
      * @param args the command line arguments
+     * @throws java.lang.InterruptedException
      */
     public static void main(String[] args) throws InterruptedException {
 

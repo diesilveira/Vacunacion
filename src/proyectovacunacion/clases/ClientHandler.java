@@ -13,6 +13,7 @@ import java.io.*;
  * @author danie
  */
 public class ClientHandler extends Thread {
+
     private final Socket clientSocket;
     private final Server server;//
     private PrintWriter out;
@@ -25,10 +26,10 @@ public class ClientHandler extends Thread {
 
     @Override
     public void run() {
-        try{
+        try {
             out = new PrintWriter(clientSocket.getOutputStream(), true);
             in = new BufferedReader(
-              new InputStreamReader(clientSocket.getInputStream()));
+                    new InputStreamReader(clientSocket.getInputStream()));
 
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
@@ -42,8 +43,8 @@ public class ClientHandler extends Thread {
             out.close();
             clientSocket.close();
             this.server.stop();//
-        }catch (IOException e ) {
+        } catch (IOException e) {
             System.err.println(e);
-        }   
-    }    
+        }
+    }
 }

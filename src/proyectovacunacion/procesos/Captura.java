@@ -10,7 +10,6 @@ import java.util.concurrent.Semaphore;
 import proyectovacunacion.clases.Persona;
 import proyectovacunacion.lectoresEscritores.ManejadorArchivosGenerico;
 import proyectovacunacion.lectoresEscritores.Logger;
-import java.time.LocalTime;
 import proyectovacunacion.clases.Reloj;
 
 /**
@@ -25,7 +24,7 @@ public class Captura implements Runnable {
     private final Semaphore s_actualizado;
     private final Queue<Persona> colaRecepcion;
     private final Logger logger;
-    private Reloj reloj;
+    private final Reloj reloj;
 
     public Captura(String rutaArchivo, Semaphore s, Semaphore c, Semaphore a, Queue<Persona> colaRecepcion, Reloj rel) {
         this.rutaArchivo = rutaArchivo;

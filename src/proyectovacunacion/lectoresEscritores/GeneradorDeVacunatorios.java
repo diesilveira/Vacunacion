@@ -12,7 +12,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.Semaphore;
 import proyectovacunacion.clases.Fecha;
-import proyectovacunacion.clases.Reloj;
 import proyectovacunacion.clases.Vacuna;
 import proyectovacunacion.clases.Vacunatorio;
 import proyectovacunacion.clases.VacunatoriosActivos;
@@ -50,7 +49,8 @@ public class GeneradorDeVacunatorios {
 
             Fecha fecha = new Fecha(LocalDateTime.parse(lineaAProcesar[5].trim(), formatter));
             Fecha segundaFecha = new Fecha(fecha.getFechasDisponible().plusMonths(1));
-            int contador = (stockPfizzer + stockSinovac / 2);
+            
+            int contador = ((stockPfizzer + stockSinovac) / 2);
             fechasDisponibles.add(fecha);
             fechasDisponibles.add(segundaFecha);
             contador--;

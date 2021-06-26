@@ -5,7 +5,6 @@
  */
 package proyectovacunacion.procesos;
 
-import java.time.LocalTime;
 import java.util.Queue;
 import java.util.concurrent.Semaphore;
 import proyectovacunacion.clases.Criterio;
@@ -27,7 +26,7 @@ public class Seleccion implements Runnable {
     private final Queue<Criterio> colaCriterio;
     private final Logger logger;
     private final EscritorPersonasEspera espera;
-    private Reloj reloj;
+    private final Reloj reloj;
 
     public Seleccion(Semaphore s_recepcion, Semaphore c, Semaphore a, Queue<Persona> colaRecepcion, Queue<Criterio> colaCriterio, Reloj rel) {
         this.s_recepcion = s_recepcion;
@@ -61,14 +60,14 @@ public class Seleccion implements Runnable {
                         criterio.getMutex().release();
                         criterio.getActualizado().release();
                     }
-                  
+
                 }
-                  if (persona.getHabilitado() == false) {
-                      persona.setCicloNoAgendado(reloj.getContador() - persona.getCicloInicializado());
-                      this.logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula()
-                              + " No habilitado a vacunarse - [Grupo " + persona.getGrupoPrioritario() + "] (" + persona.getCicloNoAgendado() + " ciclos)");
-                        this.espera.escribirLog(persona);
-                    }
+                if (persona.getHabilitado() == false) {
+                    persona.setCicloNoAgendado(reloj.getContador() - persona.getCicloInicializado());
+                    this.logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula()
+                            + " No habilitado a vacunarse - [Grupo " + persona.getGrupoPrioritario() + "] (" + persona.getCicloNoAgendado() + " ciclos)");
+                    this.espera.escribirLog(persona);
+                }
             } catch (InterruptedException ex) {
                 System.out.print(ex);
             }
