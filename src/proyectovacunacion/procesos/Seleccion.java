@@ -44,7 +44,7 @@ public class Seleccion implements Runnable {
     public void run() {
         while (true) {
             try {
-
+                reloj.agregarCuenta();
                 s_actualizado.acquire();
                 s_recepcion.acquire();
                 Persona persona = colaRecepcion.remove();
@@ -67,7 +67,7 @@ public class Seleccion implements Runnable {
                     this.logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula()
                             + " No habilitado a vacunarse - [Grupo " + persona.getGrupoPrioritario() + "] (" + persona.getCicloNoAgendado() + " ciclos)");
                     this.espera.escribirLog(persona);
-                }
+                }                
             } catch (InterruptedException ex) {
                 System.out.print(ex);
             }

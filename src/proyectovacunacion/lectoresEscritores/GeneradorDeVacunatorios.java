@@ -60,8 +60,8 @@ public class GeneradorDeVacunatorios {
                 i++;
                 if (fecha2.getFechasDisponible().getHour() > 8 && fecha2.getFechasDisponible().getHour() < 20) {
                     Fecha segundaFecha2 = new Fecha(fecha2.getFechasDisponible().plusMonths(1));
-                    fechasDisponibles.add(segundaFecha2);
                     fechasDisponibles.add(fecha2);
+                    fechasDisponibles.add(segundaFecha2);                    
                     contador--;
                 }
 

@@ -40,6 +40,7 @@ public class Agendar implements Runnable {
     public void run() {
         while (true) {
             try {
+                reloj.agregarCuenta();
                 Persona persona = null;
                 Criterio criterioSeleccionado = null;
 
@@ -78,6 +79,7 @@ public class Agendar implements Runnable {
                                             fechaDeAgenda.setPersonaAsignada(persona);
                                             vacuna.setCantidad(vacuna.getCantidad() - 1);
                                             persona.setPrimerFecha(fechaDeAgenda);
+                                            persona.setCicloAgendado(reloj.getContador());
                                             fecha++;
                                             logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId() + " Primera dosis: " + persona.getPrimerFecha().getFechasDisponible().toString() + " (" + (persona.getCicloAgendado() - persona.getCicloInicializado()) + " ciclos)");
                                             
@@ -86,12 +88,12 @@ public class Agendar implements Runnable {
                                             fechaDeAgenda.setAsignada(true);
                                             fechaDeAgenda.setPersonaAsignada(persona);
                                             vacuna.setCantidad(vacuna.getCantidad() - 1);
-                                            persona.setPrimerFecha(fechaDeAgenda);
+                                            persona.setSegundaFecha(fechaDeAgenda);
                                             fecha = 1;
                                             persona.tieneAgenda();
-                                            persona.setCicloAgendado(reloj.getContador());
-                                            reloj.agregarCuenta();
-                                            logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId() + " Segunda dosis: " + persona.getPrimerFecha().getFechasDisponible().toString() + " (" + (persona.getCicloAgendado() - persona.getCicloInicializado()) + " ciclos)");
+                                            persona.setCicloAgendado(reloj.getContador());                                            
+                                            logger.escribirLog(Thread.currentThread().getName(), "Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId() + " Segunda dosis: " + persona.getSegundaFecha().getFechasDisponible().toString() + " (" + (persona.getCicloAgendado() - persona.getCicloInicializado()) + " ciclos)");
+                                            System.out.println(" Documento: " + persona.getCedula() + " Agendado en: " + vacunatorio.getId() + " Primera dosis: " + persona.getPrimerFecha().getFechasDisponible().toString()+ " Segunda dosis: " + persona.getSegundaFecha().getFechasDisponible().toString());
                                             break;
                                         }
 

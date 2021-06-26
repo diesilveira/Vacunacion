@@ -39,6 +39,7 @@ public class Captura implements Runnable {
     @Override
     public void run() {
         try {
+            reloj.agregarCuenta();
             String[] listaSolicitudes = ManejadorArchivosGenerico.leerArchivo(rutaArchivo, false);
             for (String lineaLeida : listaSolicitudes) {
                 String[] lineaAProcesar = lineaLeida.split("\\|");
@@ -56,8 +57,7 @@ public class Captura implements Runnable {
 
                 s.release();
                 s_actualizado.release();
-            }
-            reloj.agregarCuenta();
+            }            
         } catch (InterruptedException ex) {
             System.out.print(ex);
         }
